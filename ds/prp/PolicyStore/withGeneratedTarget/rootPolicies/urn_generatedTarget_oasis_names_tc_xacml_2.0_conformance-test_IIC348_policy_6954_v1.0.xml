@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="urn:generatedTarget:oasis:names:tc:xacml:2.0:conformance-test:IIC348:policy_6954" Version="1.0" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
+    <Description>
+        Policy for Conformance Test IIC348.
+        Purpose - Function Evaluation - Set Functions: yearMonthDuration-subset
+    </Description>
+    <Target>
+        <AnyOf>
+            <AllOf>
+                <Match MatchId="urn:oasis:names:tc:xacml:3.0:function:string-starts-with">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">a</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:application" AttributeId="urn:sunfish:attribute:id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">TRÜ</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+                <Match MatchId="urn:oasis:names:tc:xacml:3.0:function:string-starts-with">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">HCr</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:application" AttributeId="urn:sunfish:attribute:id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+            </AllOf>
+            <AllOf>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">dh</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">mü</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+                <Match MatchId="urn:oasis:names:tc:xacml:3.0:function:string-equal-ignore-case">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+            </AllOf>
+            <AllOf>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+            </AllOf>
+            <AllOf>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">P</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+            </AllOf>
+            <AllOf>
+                <Match MatchId="urn:oasis:names:tc:xacml:3.0:function:string-equal-ignore-case">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">vd</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:application" AttributeId="urn:sunfish:attribute:id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+                <Match MatchId="urn:oasis:names:tc:xacml:3.0:function:string-starts-with">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">n</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:application" AttributeId="urn:sunfish:attribute:id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-regexp-match">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">tkzR</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+            </AllOf>
+            <AllOf>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">PuY</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+            </AllOf>
+            <AllOf>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+            </AllOf>
+            <AllOf>
+                <Match MatchId="urn:oasis:names:tc:xacml:3.0:function:string-starts-with">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">vTPS</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:application" AttributeId="urn:sunfish:attribute:id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+                <Match MatchId="urn:oasis:names:tc:xacml:3.0:function:string-starts-with">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">TRxC</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:application" AttributeId="urn:sunfish:attribute:id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+            </AllOf>
+            <AllOf>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-regexp-match">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">XERx</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+                <Match MatchId="urn:oasis:names:tc:xacml:3.0:function:string-starts-with">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">R</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:application" AttributeId="urn:sunfish:attribute:id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+            </AllOf>
+        </AnyOf>
+    </Target>
+    <Rule RuleId="urn:oasis:names:tc:xacml:2.0:conformance-test:IIC348:rule" Effect="Permit">
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:3.0:function:yearMonthDuration-subset">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:3.0:function:yearMonthDuration-bag">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#yearMonthDuration">P5Y7M</AttributeValue>
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#yearMonthDuration">P1Y</AttributeValue>
+                </Apply>
+                <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:test-attr" DataType="http://www.w3.org/2001/XMLSchema#yearMonthDuration" MustBePresent="false"/>
+            </Apply>
+        </Condition>
+    </Rule>
+</Policy>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="urn:generatedTarget:oasis:names:tc:xacml:2.0:conformance-test:IIC038:policy_5138" Version="1.0" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
+    <Description>
+        Policy for Conformance Test IIC038.
+    </Description>
+    <Target>
+        <AnyOf>
+            <AllOf>
+                <Match MatchId="urn:oasis:names:tc:xacml:3.0:function:string-equal-ignore-case">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">eeFEm</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">PPeMy</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+            </AllOf>
+            <AllOf>
+                <Match MatchId="urn:oasis:names:tc:xacml:3.0:function:string-equal-ignore-case">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">DöZcz</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-regexp-match">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">CoIeÖ</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-regexp-match">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">bYviX</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:application" AttributeId="urn:sunfish:attribute:id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+            </AllOf>
+            <AllOf>
+                <Match MatchId="urn:oasis:names:tc:xacml:3.0:function:string-equal-ignore-case">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">REWeö</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:application" AttributeId="urn:sunfish:attribute:id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+                <Match MatchId="urn:oasis:names:tc:xacml:3.0:function:string-equal-ignore-case">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">qOToe</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">YreDK</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+            </AllOf>
+            <AllOf>
+                <Match MatchId="urn:oasis:names:tc:xacml:3.0:function:string-equal-ignore-case">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">ekTBZ</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:application" AttributeId="urn:sunfish:attribute:id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">msVZu</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:application" AttributeId="urn:sunfish:attribute:id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+            </AllOf>
+            <AllOf>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">yÖflL</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+                <Match MatchId="urn:oasis:names:tc:xacml:3.0:function:string-equal-ignore-case">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">cGxDg</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+            </AllOf>
+        </AnyOf>
+    </Target>
+    <Rule RuleId="urn:oasis:names:tc:xacml:2.0:conformance-test:IIC038:rule" Effect="Permit">
+        <Description>
+            Julius Hibbert can perform any action on any resource.
+        </Description>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:rfc822Name-equal">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:rfc822Name-one-and-only">
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id" DataType="urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name" MustBePresent="false"/>
+                </Apply>
+                <AttributeValue DataType="urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name">j_hibbert@medico.com</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+</Policy>

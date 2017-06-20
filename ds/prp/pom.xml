@@ -1,0 +1,62 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>eu.sunfishproject.icsp</groupId>
+		<artifactId>parent</artifactId>
+		<version>0.1</version>
+	</parent>
+	<artifactId>prp</artifactId>
+	<packaging>war</packaging>
+
+	<dependencies>
+
+		<!-- commons -->
+		<dependency>
+			<groupId>eu.sunfishproject.icsp</groupId>
+			<artifactId>commons</artifactId>
+			<version>0.1</version>
+		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>commons-io</groupId> -->
+<!-- 			<artifactId>commons-io</artifactId> -->
+<!-- 			<version>2.5</version> -->
+<!-- 		</dependency> -->
+
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19.1</version>
+				<configuration>
+					<argLine>-Xms256m -Xmx3096m</argLine>
+					<parallel>methods</parallel>
+					<threadCount>4</threadCount>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${maven-war-plugin.version}</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,208 @@
+@charset "utf-8";
+
+h2#demonstrator_tabheader, h2#demonstrator_contentheader {
+	padding:2px;
+	font-size:1.1em;
+	color:#fff;
+	border-bottom:2px solid #fff;
+}
+
+#demonstrator_centercontent {
+	width:auto;
+
+}
+
+#demonstrator_content {
+	padding:20px;
+}
+
+#demonstrator_content a {
+	text-decoration:underline;
+	color: #000;
+}
+
+.logoutbuttons {
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+p {
+	margin-bottom:1em;
+}
+
+
+/* [OPTIONAL] Geben Sie hier die Farbe fuer den hellen Hintergrund an */
+.demonstrator_hell {
+	background-color : #DDDDDD;	
+}
+
+/* [OPTIONAL] Geben Sie hier die Farbe fuer den dunklen Hintergrund an */
+.demonstrator_dunkel {
+	background-color: #A02D2D;
+}
+
+.demonstrator_logoutButton {
+	position: relative;
+	margin-left: 65%;
+	bottom: 15px;
+}
+
+.demonstrator_button {
+/* 	background: #efefef;
+	border:2px solid #000; */
+	cursor: pointer;
+	width: 180px;
+	height: 25px;
+	text-align: center;
+	margin-bottom: 10px;
+	margin-top: 25px;
+	border-radius: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#demonstrator_SAML-assertion {
+	display: none;
+}
+
+#demonstrator_samlArea{
+	width: 100%;
+}
+
+/* Anmeldeframe */
+#demonstrator_main {
+	clear:both;
+	margin-left: 5%;
+}
+
+#demonstrator_leftcontent {
+	/*float:left;*/
+/* 	width:255px; */
+	margin-left: 3%;
+	margin-top:25px;
+	position: relative;
+/* 	margin: 0 auto; */		
+}
+
+#submitbutton {
+	width: 150px;
+	height: 35px;
+}
+
+h2#demonstrator_tabheader, h2#demonstrator_contentheader {
+	padding:2px;
+	font-size:1.1em;
+	color:#fff;
+	border-bottom:2px solid #fff;
+}
+
+#demonstrator_bkulogin {
+	overflow:hidden;	
+}
+
+#demonstrator_bkukarte {
+	float:left;
+	background: url(../img/karte.gif) no-repeat top center;
+	padding: 90px 10px 10px 10px;
+	text-align:center;
+	width:40%;
+}
+
+#demonstrator_bkuhandy {
+	float:right;
+	background: url(../img/handy.gif) no-repeat top center;
+	padding: 90px 10px 10px 10px;
+	text-align:center;
+	width:40%;
+}
+
+#demonstrator_mandate{
+	text-align:center;
+	padding : 5px 5px 5px 5px;
+	clear: both;
+}
+
+#demonstrator_stork{
+	text-align:center;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	clear: both;
+}
+
+/* .demonstrator_button input {
+	background: #efefef;
+	border:1px solid #000;
+	cursor: pointer;
+} */
+
+#demonstrator_installJava, #demonstrator_BrowserNOK {
+	clear:both;
+	font-size:0.8em;
+	padding:4px;
+}
+
+#demonstrator_localBKU {
+	padding:4px;
+}
+
+#demonstrator_localBKU p{
+	text-align: left;
+}
+
+.demonstrator_sendButton {
+	background-color: DarkGray;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;	
+}
+
+#demonstrator_tab {
+	margin-top:2px;
+	padding:2px;
+	clear:both;
+}
+
+#demonstrator_leftcontent a {
+	text-decoration:none; 
+	color: #000;
+/*	display:block;*/
+	padding:4px;	
+}
+
+#demonstrator_leftcontent a:hover, #demonstrator_leftcontent a:focus, #demonstrator_leftcontent a:active {
+	text-decoration:underline;
+	color: #000;	
+}
+
+#demonstrator_navlist {
+	margin-top:20px;
+}
+
+#demonstrator_navlist ul {
+	list-style: none;
+	margin-left: 0;
+}
+
+#demonstrator_navlist li {	
+	border-bottom:1px solid #fff;
+}
+
+/* iframe {
+	width:250px;
+} */
+
+.demonstrator_infobutton {
+	background-color: #005a00;
+	color: white;
+	font-family: serif;
+	text-decoration: none;
+	padding-top: 2px;
+	padding-right: 4px;
+	padding-bottom: 2px;
+	padding-left: 4px;
+	font-weight: bold;
+}
+
+#demonstrator_cccSelection{
+	margin-bottom: auto;
+}

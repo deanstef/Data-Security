@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>eu.sunfishproject.icsp</groupId>
+  <artifactId>parent</artifactId>
+  <version>0.1</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <!-- General -->
+    <java.version>1.7</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- Maven plugins -->
+    <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
+    <maven-war-plugin.version>2.6</maven-war-plugin.version>
+     
+     <!-- Jersey (Jax-WS) -->
+    <jersey.version>2.22.2</jersey.version>
+
+    <!-- XML -->
+    <jackson.version>2.6.3</jackson.version>
+  
+  </properties>
+  <modules>
+    <module>commons</module>
+    <module>pap</module>
+    <module>pdp</module>
+    <module>pep</module>
+    <module>pip</module>
+    <module>prp</module>
+    <module>demoapp</module>
+    <module>ri</module>
+  </modules>
+</project>

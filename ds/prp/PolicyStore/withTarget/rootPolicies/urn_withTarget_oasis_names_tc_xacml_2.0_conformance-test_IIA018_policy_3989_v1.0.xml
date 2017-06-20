@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="urn:withTarget:oasis:names:tc:xacml:2.0:conformance-test:IIA018:policy_3989" Version="1.0" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
+    <Description>
+        Policy for Conformance Test IIA018.
+    </Description>
+    <Target/>
+    <Rule RuleId="urn:oasis:names:tc:xacml:2.0:conformance-test:IIA018:rule" Effect="Permit">
+        <Description>
+            Anyone can perform any action on any resource if current-time
+            is 05:23:47-05:00
+        </Description>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:date-equal">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:date-one-and-only">
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment" AttributeId="urn:oasis:names:tc:xacml:1.0:environment:current-date" DataType="http://www.w3.org/2001/XMLSchema#date" MustBePresent="false"/>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#date">2002-03-22</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+</Policy>

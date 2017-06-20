@@ -1,0 +1,11 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xacml="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17">
+  <xs:import schemaLocation="xacml-core-v3-schema-wd-17.xsd" namespace="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" />
+  <xs:complexType name="PolicySetsType">
+    <xs:sequence>
+	  <xs:element name="IsRootPolicySet" type="xs:boolean" />
+      <xs:element ref="xacml:PolicySet" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:element name="PolicySets" type="PolicySetsType" />
+</xs:schema>

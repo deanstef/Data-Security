@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="urn:withTarget:oasis:names:tc:xacml:2.0:conformance-test:IIA017:policy_8313" Version="1.0" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
+    <Description>
+        Policy for Conformance Test IIA017.
+    </Description>
+    <Target/>
+    <Rule RuleId="urn:oasis:names:tc:xacml:2.0:conformance-test:IIA017:rule" Effect="Permit">
+        <Description>
+            Anyone can perform any action on any resource if
+            there is a current-time attribute.
+        </Description>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-equal">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-bag-size">
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment" AttributeId="urn:oasis:names:tc:xacml:1.0:environment:current-time" DataType="http://www.w3.org/2001/XMLSchema#time" MustBePresent="false"/>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#integer">1</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+</Policy>

@@ -1,0 +1,46 @@
+{
+	"version": 1,
+	"collections": [
+		{
+			"id": "157559ad-c764-4dc3-8bb9-41ade8d709b7",
+			"name": "PEP",
+			"folders": [],
+			"requests": [
+				{
+					"id": "fa6722a0-a18f-4d18-a067-0b6a71c81157",
+					"url": "http://localhost:8080/pep/v1/hello",
+					"method": "GET",
+					"collectionId": "157559ad-c764-4dc3-8bb9-41ade8d709b7",
+					"name": "{{url}}/pep/get",
+					"description": "",
+					"headers": "Content-Type: text/plain",
+					"dataMode": "raw",
+					"data": ""
+				},
+				{
+					"id": "aaf07d7c-8d3f-454b-bc1c-83beb3dce07d",
+					"url": "http://localhost:8080/pep/v1/app-request",
+					"method": "POST",
+					"collectionId": "157559ad-c764-4dc3-8bb9-41ade8d709b7",
+					"name": "/pep/v1/app-request (demoapp.sf)",
+					"description": "",
+					"headers": "SUNFISH-issuer: {\"method\":\"jwt\",\"token\":\"eyJpc3MiOiJzZmExNzI4MyIsInN1YiI6InNmYTE3MjgzIiwiYXVkIjoic2ZlOTgyIiwiaWF0IjoxNDY3OTg1OTY4LCJleHAiOjE0Njc5ODYwMjB9\"}\nSUNFISH-request-data: {\"headers\":{\"Accept\":\"*/*\",\"Accept-Encoding\":\"gzip, deflate\",\"Output\":\"none\"}}\nSUNFISH-service: {\"id\":\"demoapp.sf\"}\nSUNFISH-request: {\"method\":\"GET\",\"port\":80, \"protocol\":\"http\", \"path\":\"/demo/index.html\"}\nContent-Type: text/plain; charset=utf-8\nSUNFISH-request-params: {}",
+					"dataMode": "raw",
+					"data": ""
+				}
+			],
+			"order": [
+				"fa6722a0-a18f-4d18-a067-0b6a71c81157",
+				"aaf07d7c-8d3f-454b-bc1c-83beb3dce07d"
+			]
+		}
+	],
+	"environments": [
+		{
+			"id": "661b1b96-6e02-47a3-9160-a5d5a8774133",
+			"name": "API-Flow Imports",
+			"values": [],
+			"timestamp": 1493391706325
+		}
+	]
+}

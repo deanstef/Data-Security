@@ -1,0 +1,60 @@
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="urn:sunfish:policy:check-authentication" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:deny-overrides" Version="1.0">
+    <Description>Check authentication of users connecting to application demoapp</Description>
+    <Target>
+        <AnyOf>
+            <AllOf>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">demoapp.sf</AttributeValue>
+                    <AttributeDesignator AttributeId="urn:sunfish:attribute:id" Category="urn:sunfish:attribute-category:service" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true" />
+                </Match>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">/</AttributeValue>
+                    <AttributeDesignator AttributeId="urn:sunfish:attribute:request:path" Category="urn:sunfish:attribute-category:request" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false" />
+                </Match>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">GET</AttributeValue>
+                    <AttributeDesignator AttributeId="urn:sunfish:attribute:request:method" Category="urn:sunfish:attribute-category:request" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false" />
+                </Match>
+            </AllOf>
+        </AnyOf>
+    </Target>
+    <Rule Effect="Permit" RuleId="urn:sunfish:rule:permit-users">
+        <Target />
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-at-least-one-member-of">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">user</AttributeValue>
+                </Apply>
+                <AttributeDesignator Category="urn:sunfish:attribute-category:identity" AttributeId="urn:sunfish:attribute:tenant-role" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false" />
+            </Apply>
+        </Condition>
+    </Rule>
+    <Rule Effect="Deny" RuleId="urn:sunfish:rule:issue-authentication-obligation">
+        <Target />
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-equal">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag-size">
+                    <AttributeDesignator AttributeId="urn:sunfish:attribute:tenant-role" Category="urn:sunfish:attribute-category:identity" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false" />
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#integer">0</AttributeValue>
+            </Apply>
+        </Condition>
+        <ObligationExpressions>
+            <ObligationExpression ObligationId="urn:sunfish:attribute:obligation:authenticate" FulfillOn="Deny">
+            </ObligationExpression>
+        </ObligationExpressions>
+    </Rule>
+    <Rule Effect="Deny" RuleId="urn:sunfish:rule:deny-others">
+        <Target />
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:not">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-at-least-one-member-of">
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">user</AttributeValue>
+                    </Apply>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:identity" AttributeId="urn:sunfish:attribute:tenant-role" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false" />
+                </Apply>
+            </Apply>
+        </Condition>
+    </Rule>
+</Policy>

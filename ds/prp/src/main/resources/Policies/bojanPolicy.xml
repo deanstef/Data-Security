@@ -1,0 +1,28 @@
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"
+  PolicyId="urn:sunfish:policy:P1"
+  RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:deny-overrides"
+  Version="1.0">
+  <Description>P2 - application connects to service</Description>
+    <Target>
+      <AnyOf>
+        <AllOf>
+          <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">sfa17283</AttributeValue>
+            <AttributeDesignator AttributeId="urn:sunfish:attribute:id"
+              Category="urn:sunfish:attribute-category:application"
+              DataType="http://www.w3.org/2001/XMLSchema#string"
+              MustBePresent="true"></AttributeDesignator>
+          </Match>
+          <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">ix28739aseu</AttributeValue>
+            <AttributeDesignator AttributeId="urn:sunfish:attribute:id"
+              Category="urn:sunfish:attribute-category:service"
+              DataType="http://www.w3.org/2001/XMLSchema#string"
+              MustBePresent="true"></AttributeDesignator>
+          </Match>
+        </AllOf>
+      </AnyOf>
+    </Target>
+  <Rule Effect="Permit" RuleId="urn:sunfish:rule:p1r1">
+  </Rule>
+</Policy> 

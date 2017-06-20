@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="urn:emptyTarget:oasis:names:tc:xacml:2.0:conformance-test:IIC197:policy_8421" Version="1.0" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
+    <Description>
+        Policy for Conformance Test IIC197.
+    </Description>
+    <Target/>
+    <Rule RuleId="urn:oasis:names:tc:xacml:2.0:conformance-test:IIC197:rule" Effect="Permit">
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-at-least-one-member-of">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-bag">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#time">12:01:02-02:00</AttributeValue>
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#time">08:23:47-05:00</AttributeValue>
+                </Apply>
+                <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:test-attr" DataType="http://www.w3.org/2001/XMLSchema#time" MustBePresent="false"/>
+            </Apply>
+        </Condition>
+    </Rule>
+</Policy>

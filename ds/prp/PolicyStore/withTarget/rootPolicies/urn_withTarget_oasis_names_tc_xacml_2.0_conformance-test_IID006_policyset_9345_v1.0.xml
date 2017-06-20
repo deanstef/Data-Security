@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PolicySet xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicySetId="urn:withTarget:oasis:names:tc:xacml:2.0:conformance-test:IID006:policyset_9345" Version="1.0" PolicyCombiningAlgId="urn:oasis:names:tc:xacml:3.0:policy-combining-algorithm:deny-overrides">
+    <Description>
+        PolicySet for Conformance Test IID006.
+        Purpose: Case: Deny: PolicyCombiningAlgorithm DenyOverrides
+    </Description>
+    <Target/>
+    <Policy PolicyId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID006:policy1" Version="1.0" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
+        <Description>
+            Policy1 for Conformance Test IID006.
+        </Description>
+        <Target/>
+        <Rule RuleId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID006:rule1" Effect="Deny">
+            <Description>
+                A subject whose name is J. Hibbert may not
+                read Bart Simpson's medical record.  NOTAPPLICABLE
+            </Description>
+            <Target>
+                <AnyOf>
+                    <AllOf>
+                        <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">J. Hibbert</AttributeValue>
+                            <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                        </Match>
+                    </AllOf>
+                </AnyOf>
+            </Target>
+        </Rule>
+    </Policy>
+    <Policy PolicyId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID006:policy2" Version="1.0" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
+        <Description>
+            Policy2 for Conformance Test IID006.
+        </Description>
+        <Target/>
+        <Rule RuleId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID006:rule2" Effect="Permit">
+            <Description>
+                A subject who is at least 5 years older than Bart
+                Simpson may read Bart Simpson's medical record. PERMIT.
+            </Description>
+            <Condition>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-greater-than-or-equal">
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-subtract">
+                        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-one-and-only">
+                            <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:age" DataType="http://www.w3.org/2001/XMLSchema#integer" MustBePresent="true"/>
+                        </Apply>
+                        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-one-and-only">
+                            <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment" AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:bart-simpson-age" DataType="http://www.w3.org/2001/XMLSchema#integer" MustBePresent="true"/>
+                        </Apply>
+                    </Apply>
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#integer">5</AttributeValue>
+                </Apply>
+            </Condition>
+        </Rule>
+    </Policy>
+    <Policy PolicyId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID006:policy3" Version="1.0" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
+        <Description>
+            Policy3 for Conformance Test IID006.
+        </Description>
+        <Target/>
+        <Rule RuleId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID006:rule3" Effect="Permit">
+            <Description>
+                A subject whose "bogus" attribute is "Zaphod Beeblebrox"
+                may perform any action on any resource.  INDETERMINATE.
+            </Description>
+            <Target>
+                <AnyOf>
+                    <AllOf>
+                        <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Zaphod Beeblebrox</AttributeValue>
+                            <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-tests:bogus" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                        </Match>
+                    </AllOf>
+                </AnyOf>
+            </Target>
+        </Rule>
+    </Policy>
+    <Policy PolicyId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID006:policy4" Version="1.0" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
+        <Description>
+            Policy4 for Conformance Test IID006.
+        </Description>
+        <Target/>
+        <Rule RuleId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID006:rule4" Effect="Deny">
+            <Description>
+                A subject whose name is Julius Hibbert may not
+                perform any action on any resource.  DENY.
+            </Description>
+            <Condition>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+                        <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                    </Apply>
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Julius Hibbert</AttributeValue>
+                </Apply>
+            </Condition>
+        </Rule>
+    </Policy>
+</PolicySet>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1" id="data-fabric-web-tool">
+
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/js/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/css/*</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>HelloWorld</servlet-name>
+        <servlet-class>eu.sunfishproject.icsp.pep.obligation.services.oa.HelloWorld</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HelloWorld</servlet-name>
+        <url-pattern>/HelloWorld</url-pattern>
+    </servlet-mapping>
+
+
+
+    <servlet>
+        <display-name>PVP 2.1 Authentication request builder</display-name>
+        <servlet-name>pvp2login</servlet-name>
+        <servlet-class>eu.sunfishproject.icsp.pep.obligation.services.oa.pvp2.Authenticate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>pvp2login</servlet-name>
+        <url-pattern>/moa-id-oa/pvp2login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <display-name>Metadata</display-name>
+        <servlet-name>pvp2metadata</servlet-name>
+        <servlet-class>eu.sunfishproject.icsp.pep.obligation.services.oa.pvp2.BuildMetadata</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>pvp2metadata</servlet-name>
+        <url-pattern>/moa-id-oa/metadata</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <display-name>AuthHandler</display-name>
+        <servlet-name>pvp2auth</servlet-name>
+        <servlet-class>eu.sunfishproject.icsp.pep.obligation.services.oa.pvp2.AuthHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>pvp2auth</servlet-name>
+        <url-pattern>/moa-id-oa/pvp2auth</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>eu.sunfishproject.icsp.pep.PEPApplication</servlet-name>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>eu.sunfishproject.icsp.pep.PEPApplication</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
+
+
+
+</web-app>

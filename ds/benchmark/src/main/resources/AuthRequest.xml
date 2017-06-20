@@ -1,0 +1,67 @@
+
+<Request xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"
+  CombinedDecision="false" ReturnPolicyIdList="false">
+  <Attributes Category="urn:sunfish:attribute-category:service">
+    <Attribute AttributeId="urn:sunfish:attribute:id"
+      IncludeInResult="false">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">ix28739aseu</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:sunfish:attribute:service:host"
+      IncludeInResult="false">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">srv_b.zone_y</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:sunfish:attribute:service:zone"
+      IncludeInResult="false">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">sfz23812</AttributeValue>
+    </Attribute>
+  </Attributes>
+  <Attributes Category="urn:sunfish:attribute-category:application">
+    <Attribute AttributeId="urn:sunfish:attribute:id"
+      IncludeInResult="false">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">sfa17283</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:sunfish:attribute:application:zone"
+      IncludeInResult="false">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">sfz119a</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:sunfish:attribute:application:host"
+      IncludeInResult="false">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">app_a.zone_x</AttributeValue>
+    </Attribute>
+  </Attributes>
+  <Attributes Category="urn:sunfish:attribute-category:request">
+    <Attribute AttributeId="urn:sunfish:attribute:request:method"
+      IncludeInResult="false">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">GET</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:sunfish:attribute:request:host"
+      IncludeInResult="false">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">srv_b.zone_y</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:sunfish:attribute:request:path"
+      IncludeInResult="false">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">/resource/id/1</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:sunfish:attribute:request:port"
+      IncludeInResult="false">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#integer">443</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:sunfish:attribute:request:protocol"
+      IncludeInResult="false">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">https</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:sunfish:attribute:request:header-parameter"
+      IncludeInResult="false">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">sfhp001</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:sunfish:attribute:request:header-parameter"
+      IncludeInResult="false">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">sfhp021</AttributeValue>
+    </Attribute>
+    <Attribute AttributeId="urn:sunfish:attribute:request:header-parameter"
+      IncludeInResult="false">
+      <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">sfhp101</AttributeValue>
+    </Attribute>
+  </Attributes>
+</Request>
+

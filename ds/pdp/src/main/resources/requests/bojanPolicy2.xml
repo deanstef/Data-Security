@@ -1,0 +1,43 @@
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"
+  PolicyId="urn:sunfish:policy:P2"
+  RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:deny-overrides"
+  Version="1.0">
+  <Description>P3 - data masking on request</Description>
+  <Target></Target>
+  <Rule Effect="Permit" RuleId="urn:sunfish:rule:p1r1">
+    <Target>
+      <AnyOf>
+        <AllOf>
+          <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">sfa17283</AttributeValue>
+            <AttributeDesignator AttributeId="urn:sunfish:attribute:id"
+              Category="urn:sunfish:attribute-category:application"
+              DataType="http://www.w3.org/2001/XMLSchema#string"
+              MustBePresent="true"></AttributeDesignator>
+          </Match>
+          <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">sfbd20812981</AttributeValue>
+            <AttributeDesignator
+              AttributeId="urn:sunfish:attribute:request:body-data"
+              Category="urn:sunfish:attribute-category:request"
+              DataType="http://www.w3.org/2001/XMLSchema#string"
+              MustBePresent="true"></AttributeDesignator>
+          </Match>
+        </AllOf>
+      </AnyOf>
+    </Target>
+  </Rule>
+  <ObligationExpressions>
+    <ObligationExpression ObligationId="urn:sunfish:attribute:obligation:datamasking"
+      FulfillOn="Permit">
+      <AttributeAssignmentExpression
+        AttributeId="urn:sunfish:attribute:obligation:masking-policy-id">
+        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">sfmpid10</AttributeValue>
+      </AttributeAssignmentExpression>
+      <AttributeAssignmentExpression
+        AttributeId="urn:sunfish:attribute:obligation:masking-context">
+        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">sfmpctx20</AttributeValue>
+      </AttributeAssignmentExpression>
+    </ObligationExpression>
+  </ObligationExpressions>
+</Policy>

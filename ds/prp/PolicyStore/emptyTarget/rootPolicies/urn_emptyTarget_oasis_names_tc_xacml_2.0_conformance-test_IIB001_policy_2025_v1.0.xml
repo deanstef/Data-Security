@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="urn:emptyTarget:oasis:names:tc:xacml:2.0:conformance-test:IIB001:policy_2025" Version="1.0" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
+    <Description>
+        Any Subject can perform any action on any resource.
+        Purpose - Target Matching: Case: match: anySubject, anyResource, anyAction
+    </Description>
+    <Target/>
+    <Rule RuleId="urn:oasis:names:tc:xacml:2.0:conformance-test:IIB001:rule" Effect="Permit">
+        <Description>
+            Always return Permit.
+        </Description>
+    </Rule>
+</Policy>

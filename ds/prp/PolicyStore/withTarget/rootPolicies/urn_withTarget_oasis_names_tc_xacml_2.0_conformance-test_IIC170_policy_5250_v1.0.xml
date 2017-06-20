@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="urn:withTarget:oasis:names:tc:xacml:2.0:conformance-test:IIC170:policy_5250" Version="1.0" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
+    <Description>
+        Policy for Conformance Test IIC170.
+    </Description>
+    <Target/>
+    <Rule RuleId="urn:oasis:names:tc:xacml:2.0:conformance-test:IIC170:rule" Effect="Permit">
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:3.0:function:any-of">
+                <Function FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal"/>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">This  is IT!</AttributeValue>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:3.0:function:map">
+                    <Function FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-normalize-space"/>
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:test-attr" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="false"/>
+                </Apply>
+            </Apply>
+        </Condition>
+    </Rule>
+</Policy>

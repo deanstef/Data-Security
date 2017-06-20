@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"
+        xmlns:sunfish="urn:sunfish"
+        PolicyId="MEF"
+        RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides" Version="1.0">
+  <Description>MEF Policy</Description>
+  <Target>
+    <AnyOf>
+      <AllOf>
+        <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">PAYSLIP</AttributeValue>
+          <AttributeDesignator
+                  AttributeId="urn:sunfish:attribute:id"
+                  Category="urn:sunfish:attribute-category:service"
+                  DataType="http://www.w3.org/2001/XMLSchema#string"
+                  MustBePresent="true" />
+        </Match>
+      </AllOf>
+    </AnyOf>
+  </Target>
+
+  <Rule Effect="Permit" RuleId="ApplicationZone">
+    <Condition>
+      <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+          <AttributeDesignator
+                  AttributeId="urn:sunfish:attribute:application:zone"
+                  Category="urn:sunfish:attribute-category:application"
+                  DataType="http://www.w3.org/2001/XMLSchema#string"
+                  MustBePresent="true" />
+        </Apply>
+        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">MEF</AttributeValue>
+      </Apply>
+    </Condition>
+    <ObligationExpressions>
+      <ObligationExpression ObligationId="urn:sunfish:obligation:id:MASK"
+                            FulfillOn="Permit">
+        <AttributeAssignmentExpression
+                AttributeId="urn:sunfish:obligation">
+          <sunfish:SunfishObligationExpression
+                  ObligationId="urn:sunfish:obligation:id:MASK-CSV"
+                  MaskingPolicyId="urn:sunfish:attribute:obligation:masking-policy-id:1"
+                  MaskingContext="urn:sunfish:attribute:obligation:masking-context:user" />
+        </AttributeAssignmentExpression>
+      </ObligationExpression>
+    </ObligationExpressions>
+  </Rule>
+
+
+  <Rule Effect="Deny" RuleId="9to6">
+    <Condition>
+      <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:or">
+        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-less-than">
+          <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-one-and-only">
+            <AttributeDesignator
+                    AttributeId="urn:oasis:names:tc:xacml:1.0:environment:current-time"
+                    Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment"
+                    DataType="http://www.w3.org/2001/XMLSchema#time"
+                    MustBePresent="true"/>
+          </Apply>
+          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#time">05:00:00Z</AttributeValue>
+        </Apply>
+        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-greater-than">
+          <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:time-one-and-only">
+            <AttributeDesignator
+                    AttributeId="urn:oasis:names:tc:xacml:1.0:environment:current-time"
+                    Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment"
+                    DataType="http://www.w3.org/2001/XMLSchema#time"
+                    MustBePresent="true"/>
+          </Apply>
+          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#time">16:00:00Z</AttributeValue>
+        </Apply>
+      </Apply>
+    </Condition>
+  </Rule>
+
+  <Rule Effect="Deny" RuleId="Permit15to20">
+    <Condition>
+      <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:or">
+        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-less-than">
+          <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-one-and-only">
+            <AttributeDesignator
+                    AttributeId="urn:sunfish:environment:current-day-in-month"
+                    Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment"
+                    DataType="http://www.w3.org/2001/XMLSchema#integer"
+                    MustBePresent="true"/>
+          </Apply>
+          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#integer">15</AttributeValue>
+        </Apply>
+        <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-greater-than">
+          <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-one-and-only">
+            <AttributeDesignator
+                    AttributeId="urn:sunfish:environment:current-day-in-month"
+                    Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment"
+                    DataType="http://www.w3.org/2001/XMLSchema#integer"
+                    MustBePresent="true"/>
+          </Apply>
+          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#integer">20</AttributeValue>
+        </Apply>
+      </Apply>
+    </Condition>
+  </Rule>
+
+
+  <!-- TODO: obligation für once a month -->
+
+</Policy>
+

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="urn:generatedTarget:oasis:names:tc:xacml:2.0:conformance-test:IID302:policy_1374" Version="1.0" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:ordered-deny-overrides">
+    <Description>
+        Policy for Conformance Test IID302.
+        Purpose: Case: Deny: RuleCombiningAlgorithm Ordered DenyOverrides
+        	Also tests Dynamic Expressions in Obligations and Advice attached to Rules
+        This test in conjunction with IID303 demonstrates that the ordered-deny-overrides at the Rule level takes the first rule that matches.
+    </Description>
+    <Target>
+        <AnyOf>
+            <AllOf>
+                <Match MatchId="urn:oasis:names:tc:xacml:3.0:function:string-equal-ignore-case">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">In</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:application" AttributeId="urn:sunfish:attribute:id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+                <Match MatchId="urn:oasis:names:tc:xacml:3.0:function:string-equal-ignore-case">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">jÜ</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+            </AllOf>
+            <AllOf>
+                <Match MatchId="urn:oasis:names:tc:xacml:3.0:function:string-equal-ignore-case">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">LO</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+            </AllOf>
+            <AllOf>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">qYTH</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+                <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">sse</AttributeValue>
+                    <AttributeDesignator Category="urn:sunfish:attribute-category:request" AttributeId="urn:sunfish:attribute:request:body-data" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Match>
+            </AllOf>
+        </AnyOf>
+    </Target>
+    <Rule RuleId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:rule1" Effect="Deny">
+        <Description>
+            A subject whose name is J. Hibbert may not
+            read Bart Simpson's medical record.  NOTAPPLICABLE
+        </Description>
+        <Target>
+            <AnyOf>
+                <AllOf>
+                    <Match MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Julius Hibbert</AttributeValue>
+                        <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                    </Match>
+                </AllOf>
+            </AnyOf>
+        </Target>
+    </Rule>
+    <Rule RuleId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:rule2" Effect="Permit">
+        <Description>
+            A subject who is at least 5 years older than Bart
+            Simpson may read Bart Simpson's medical record. PERMIT.
+        </Description>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-greater-than-or-equal">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-subtract">
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-one-and-only">
+                        <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:age" DataType="http://www.w3.org/2001/XMLSchema#integer" MustBePresent="true"/>
+                    </Apply>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:integer-one-and-only">
+                        <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment" AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:bart-simpson-age" DataType="http://www.w3.org/2001/XMLSchema#integer" MustBePresent="true"/>
+                    </Apply>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#integer">5</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+    <Rule RuleId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:rule4" Effect="Deny">
+        <Description>
+            A subject whose name is J. Hibbert may not
+            perform any action on any resource.  DENY.
+        </Description>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">J. Hibbert</AttributeValue>
+            </Apply>
+        </Condition>
+        <ObligationExpressions>
+            <ObligationExpression ObligationId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:obligation-1" FulfillOn="Deny">
+                <AttributeAssignmentExpression AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:assignment1">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">assignment1</AttributeValue>
+                </AttributeAssignmentExpression>
+                <AttributeAssignmentExpression AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:dynamicSingleValue">
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </AttributeAssignmentExpression>
+                <AttributeAssignmentExpression AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:dynamicMultiValue">
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment" AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:other-doctor" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </AttributeAssignmentExpression>
+            </ObligationExpression>
+        </ObligationExpressions>
+        <AdviceExpressions>
+            <AdviceExpression AdviceId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:Advice-1" AppliesTo="Deny">
+                <AttributeAssignmentExpression AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:assignment1">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">assignment1</AttributeValue>
+                </AttributeAssignmentExpression>
+                <AttributeAssignmentExpression AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:dynamicSingleValue">
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </AttributeAssignmentExpression>
+                <AttributeAssignmentExpression AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:dynamicMultiValue">
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment" AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:other-doctor" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </AttributeAssignmentExpression>
+            </AdviceExpression>
+        </AdviceExpressions>
+    </Rule>
+    <Rule RuleId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:rule3" Effect="Permit">
+        <Description>
+            A subject whose "bogus" string equal attribute with bogus function
+            operating on "Zaphod Beeblebrox"
+            may perform any action on any resource.  INDETERMINATE.
+        </Description>
+        <Target/>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-tests:bogus" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">Zaphod Beeblebrox</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+    <Rule RuleId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:rule5" Effect="Deny">
+        <Description>
+            A subject whose name is J. Hibbert may not
+            perform any action on any resource.  DENY.
+        </Description>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">J. Hibbert</AttributeValue>
+            </Apply>
+        </Condition>
+        <ObligationExpressions>
+            <ObligationExpression ObligationId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:obligation-2" FulfillOn="Deny">
+                <AttributeAssignmentExpression AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:assignment2">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">assignment2</AttributeValue>
+                </AttributeAssignmentExpression>
+                <AttributeAssignmentExpression AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:dynamicSingleValue">
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </AttributeAssignmentExpression>
+                <AttributeAssignmentExpression AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:dynamicMultiValue">
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment" AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:other-doctor" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </AttributeAssignmentExpression>
+            </ObligationExpression>
+        </ObligationExpressions>
+        <AdviceExpressions>
+            <AdviceExpression AdviceId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:Advice-2" AppliesTo="Deny">
+                <AttributeAssignmentExpression AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:assignment2">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">assignment2</AttributeValue>
+                </AttributeAssignmentExpression>
+                <AttributeAssignmentExpression AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:dynamicSingleValue">
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </AttributeAssignmentExpression>
+                <AttributeAssignmentExpression AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:IID302:dynamicMultiValue">
+                    <AttributeDesignator Category="urn:oasis:names:tc:xacml:3.0:attribute-category:environment" AttributeId="urn:oasis:names:tc:xacml:2.0:conformance-test:other-doctor" DataType="http://www.w3.org/2001/XMLSchema#string" MustBePresent="true"/>
+                </AttributeAssignmentExpression>
+            </AdviceExpression>
+        </AdviceExpressions>
+    </Rule>
+</Policy>

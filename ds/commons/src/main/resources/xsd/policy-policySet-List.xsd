@@ -1,0 +1,16 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xacml="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" xmlns:prp="urn:sunfish:prp"
+	targetNamespace="urn:sunfish:prp" elementFormDefault="qualified">
+
+	<xs:import schemaLocation="xacml-core-v3-schema-wd-17.xsd"
+		namespace="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" />
+
+	<xs:element name="PolicyListPolicySetList" type="prp:PolicyListPolicySetListType" />
+	<xs:complexType name="PolicyListPolicySetListType">
+		<xs:sequence>
+			<xs:element ref="xacml:Policy" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element ref="xacml:PolicySet" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+
+	</xs:complexType>
+</xs:schema>

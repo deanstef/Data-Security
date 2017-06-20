@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Policy xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" PolicyId="urn:withTarget:oasis:names:tc:xacml:2.0:conformance-test:IIIG006d:policyx_72" Version="1.0" RuleCombiningAlgId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-overrides">
+    <Description>
+        Policy for Conformance Test IIIG003d.  Copy of IIG003 using Deprecated XPath functions.
+        Purpose - Non-mandatory Functions: Case: false: xpath-node-equal DEPRECATED
+        OPTIONAL test - function may or may not be implemented.  See the Response file.
+    </Description>
+    <PolicyDefaults>
+        <XPathVersion>http://www.w3.org/TR/1999/Rec-xpath-19991116</XPathVersion>
+    </PolicyDefaults>
+    <Target/>
+    <Rule RuleId="urn:oasis:names:tc:xacml:2.0:conformance-test:IIIG003d:rule" Effect="Permit">
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:xpath-node-equal">
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string" XPathCategory="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
+                	 		//md:record/*/md:name
+                </AttributeValue>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string" XPathCategory="urn:oasis:names:tc:xacml:3.0:attribute-category:resource">
+                	 		//md:record/*/md:item
+                </AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+</Policy>

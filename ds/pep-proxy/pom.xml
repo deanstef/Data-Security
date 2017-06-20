@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>eu.sunfishproject.icsp</groupId>
+    <artifactId>parent</artifactId>
+    <version>0.1</version>
+  </parent>
+
+
+  <artifactId>pep-proxy</artifactId>
+  <packaging>jar</packaging>
+
+  <repositories>
+    <repository>
+      <id>iaik</id>
+      <url>http://nexus.iaik.tugraz.at/nexus/content/repositories/iaik/</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+
+    <!-- commons -->
+    <dependency>
+      <groupId>eu.sunfishproject.icsp</groupId>
+      <artifactId>commons</artifactId>
+      <version>0.1</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>commons-httpclient</groupId>
+      <artifactId>commons-httpclient</artifactId>
+      <version>3.1</version>
+    </dependency>
+
+
+    <!-- Crypto -->
+    <!--<dependency>-->
+    <!--<groupId>iaik</groupId>-->
+    <!--<artifactId>iaik_jce_full_signed</artifactId>-->
+    <!--<version>5.3</version>-->
+    <!--</dependency>-->
+
+
+    <!--<dependency>-->
+      <!--<groupId>org.bouncycastle</groupId>-->
+      <!--<artifactId>bcpkix-jdk15on</artifactId>-->
+      <!--<version>1.55</version>-->
+    <!--</dependency>-->
+
+    <!--<dependency>-->
+      <!--<groupId>org.bouncycastle</groupId>-->
+      <!--<artifactId>bcprov-jdk15on</artifactId>-->
+      <!--<version>1.55</version>-->
+    <!--</dependency>-->
+
+
+
+  </dependencies>
+
+
+
+  <build>
+    <finalName>${project.artifactId}</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven-compiler-plugin.version}</version>
+        <configuration>
+          <encoding>UTF-8</encoding>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.0.2</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>eu.sunfishproject.icsp.proxy.SSLProxy</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+
+
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <mainClass>eu.sunfishproject.icsp.proxy.SSLProxy</mainClass>
+            </manifest>
+          </archive>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+
+
+</project>

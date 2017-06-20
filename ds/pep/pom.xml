@@ -1,0 +1,130 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>eu.sunfishproject.icsp</groupId>
+        <artifactId>parent</artifactId>
+        <version>0.1</version>
+    </parent>
+    <artifactId>pep</artifactId>
+    <packaging>war</packaging>
+
+    <repositories>
+
+        <repository>
+            <id>iaik</id>
+            <url>http://nexus.iaik.tugraz.at/nexus/content/repositories/iaik/</url>
+        </repository>
+
+        <repository>
+            <id>iaikStudent</id>
+            <url>https://nexus.student.iaik.tugraz.at/content/repositories/thirdparty</url>
+        </repository>
+
+        <repository>
+            <id>shibboleth.internet2.edu</id>
+            <name>Shibboleth</name>
+            <url>https://build.shibboleth.net/nexus/content/repositories/releases/</url>
+        </repository>
+
+        <repository>
+            <id>jboss-maven2-release-repository</id>
+            <name>JBoss</name>
+            <url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/</url>
+        </repository>
+
+    </repositories>
+
+    <dependencies>
+
+        <!-- commons -->
+        <dependency>
+            <groupId>eu.sunfishproject.icsp</groupId>
+            <artifactId>commons</artifactId>
+            <version>0.1</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.opensaml</groupId>
+            <artifactId>opensaml</artifactId>
+            <version>2.6.6</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>log4j-over-slf4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.opensaml</groupId>
+            <artifactId>xmltooling</artifactId>
+            <version>1.4.6</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>log4j-over-slf4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>xerces</groupId>
+            <artifactId>xercesImpl</artifactId>
+            <version>2.11.0.SP5</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>iaik</groupId>
+            <artifactId>iaik_jce_full_signed</artifactId>
+            <version>5.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>xalan</groupId>
+            <artifactId>xalan</artifactId>
+            <version>2.7.2</version>
+        </dependency>
+
+
+
+
+    </dependencies>
+
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <configuration>
+                    <argLine>-Xms256m -Xmx3096m</argLine>
+                    <parallel>methods</parallel>
+                    <threadCount>4</threadCount>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven-war-plugin.version}</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
