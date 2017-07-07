@@ -78,7 +78,7 @@ public class PEPUtil {
     }
 
 
-    public static Request buildPDPAuthorization(final SunfishRequest sunfishRequest, final SunfishService sunfishService, final SunfishHttpObject sunfishHttpObject, final UserSession userSession) throws ICSPException, XACMLBuilderException {
+    public static Request buildPDPAuthorization(final SunfishRequest sunfishRequest, final SunfishService sunfishService, final SunfishHttpObject sunfishHttpObject, final UserSession userSession, final String zone) throws ICSPException, XACMLBuilderException {
 
 
         XACMLRequestBuilder xacml = new XACMLRequestBuilder()
@@ -87,9 +87,9 @@ public class PEPUtil {
                 .addStringAttribute(XACMLConstants.ATTRIBUTE_SERVICE_HOST, sunfishService.getHost())
                 .addStringAttribute(XACMLConstants.ATTRIBUTE_SERVICE_ZONE, sunfishService.getZone())
                 .setCategory(XACMLConstants.CATEGORY_APPLICATION)
-                .addStringAttribute(XACMLConstants.ATTRIBUTE_ID, "TBD?!!")
-                .addStringAttribute(XACMLConstants.ATTRIBUTE_APPLICATION_ZONE, "MEF") // TODO: JUST FOR DEBUG
-                .addStringAttribute(XACMLConstants.ATTRIBUTE_APPLICATION_HOST, "TBD?!!")
+                .addStringAttribute(XACMLConstants.ATTRIBUTE_ID, "TBD")
+                .addStringAttribute(XACMLConstants.ATTRIBUTE_APPLICATION_ZONE, zone)
+                .addStringAttribute(XACMLConstants.ATTRIBUTE_APPLICATION_HOST, "TBD")
                 .setCategory(XACMLConstants.CATEGORY_REQUEST)
                 .addStringAttribute(XACMLConstants.ATTRIBUTE_REQUEST_METHOD, sunfishRequest.getMethod())
                 .addStringAttribute(XACMLConstants.ATTRIBUTE_REQUEST_HOST, sunfishService.getHost())

@@ -125,7 +125,7 @@ public class PEPRequestResource {
 
         final SunfishHttpObject sunfishHttpObject = new SunfishHttpObject(-1, headers, null, queryString, requestBody);
 
-        final Request request = PEPUtil.buildPDPAuthorization(this.request, this.service, sunfishHttpObject, this.userSession);
+        final Request request = PEPUtil.buildPDPAuthorization(this.request, this.service, sunfishHttpObject, this.userSession, PEPConfig.getInstance().getZone());
 
         //String reuqestString = CommonUtil.xacmlRequestToString(request);
 
