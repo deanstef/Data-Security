@@ -13,7 +13,6 @@ import org.sunfish.icsp.common.util.CommonUtil;
 import org.sunfish.icsp.common.xacml.generated.PolicyListType;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import oasis.names.tc.xacml._3_0.core.schema.wd_17.PolicySetType;
 import oasis.names.tc.xacml._3_0.core.schema.wd_17.PolicyType;
 
 import javax.ws.rs.client.Client;
@@ -68,29 +67,29 @@ public class RestRI implements RIAdapter {
 	}
 
 
-	@Override
-	public String update(final String policy, final String requestorID, final String token, final String id) throws ICSPException {
-
-		LogManager.getLogger(getClass()).debug("Issuing Request to {}{}", ri.getUri(), "/", SunfishServices.RI_PATH_UPDATE);
-
-
-		final String base64Policy = Base64.encodeBase64String(policy.getBytes());
-
-		final UpdateBody body = new UpdateBody(requestorID, token, id, base64Policy);
-
-
-		final Response response = ri.path(SunfishServices.RI_PATH_UPDATE)
-				.request(ExtendedMediaType.APPLICATION_JSON)
-				.post(Entity.entity(body, ExtendedMediaType.APPLICATION_JSON));
-
-
-		if (response.getStatusInfo().getFamily() != Response.Status.Family.SUCCESSFUL) {
-			throw new ICSPException("Failed : HTTP error", Response.Status.fromStatusCode(response.getStatus())) {
-			};
-		}
-
-		return response.readEntity(String.class);
-	}
+//	@Override
+//	public String update(final String policy, final String requestorID, final String token, final String id) throws ICSPException {
+//
+//		LogManager.getLogger(getClass()).debug("Issuing Request to {}{}", ri.getUri(), "/", SunfishServices.RI_PATH_UPDATE);
+//
+//
+//		final String base64Policy = Base64.encodeBase64String(policy.getBytes());
+//
+//		final UpdateBody body = new UpdateBody(requestorID, token, id, base64Policy);
+//
+//
+//		final Response response = ri.path(SunfishServices.RI_PATH_UPDATE)
+//				.request(ExtendedMediaType.APPLICATION_JSON)
+//				.post(Entity.entity(body, ExtendedMediaType.APPLICATION_JSON));
+//
+//
+//		if (response.getStatusInfo().getFamily() != Response.Status.Family.SUCCESSFUL) {
+//			throw new ICSPException("Failed : HTTP error", Response.Status.fromStatusCode(response.getStatus())) {
+//			};
+//		}
+//
+//		return response.readEntity(String.class);
+//	}
 
 
 	@Override

@@ -110,11 +110,11 @@ public class Documentation {
     public static final String PAP_ADD_POLICIES_SERVICE_ID      = "Policies will be added to the references service.";
     public static final String PAP_ADD_POLICIES_POLICY_TYPE     = "The policy type of the policy to be added";
     public static final String PAP_ADD_POLICIES_EXPIRATION_TIME = "The expiration time of the policy";
-    public static final String PAP_UPDATE_POLICIES              = "This endpoint is used by entities interfacing with the PAP to update a policy";
-    public static final String PAP_UPDATE_POLICIES_200          = "Updated successful";
-    public static final String PAP_UPDATE_POLICIES_400          = "Invalid request";
-    public static final String PAP_UPDATE_POLICIES_403          = "The requestor is not allowed to perform this operation";
-    public static final String PAP_UPDATE_POLICIES_404          = "Policy to update not found";
+//    public static final String PAP_UPDATE_POLICIES              = "This endpoint is used by entities interfacing with the PAP to update a policy";
+//    public static final String PAP_UPDATE_POLICIES_200          = "Updated successful";
+//    public static final String PAP_UPDATE_POLICIES_400          = "Invalid request";
+//    public static final String PAP_UPDATE_POLICIES_403          = "The requestor is not allowed to perform this operation";
+//    public static final String PAP_UPDATE_POLICIES_404          = "Policy to update not found";
     public static final String PAP_DELETE_POLICIES              = "This endpoint is used by entities to remove policies";
     public static final String PAP_DELETE_POLICIES_200          = "Deleted successful";
     public static final String PAP_DELETE_POLICIES_400          = "Invalid request";

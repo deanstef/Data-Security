@@ -13,7 +13,7 @@ public interface RIAdapter {
 
     String store(String policy, String requestorID, String token, String expirationTime, String id, String serviceID, String policyType) throws ICSPException;
 
-    String update(String policy, String requestorID, String token, String id) throws ICSPException;
+    //String update(String policy, String requestorID, String token, String id) throws ICSPException;
 
     String delete(String requestorID, String token, String id) throws ICSPException;
 

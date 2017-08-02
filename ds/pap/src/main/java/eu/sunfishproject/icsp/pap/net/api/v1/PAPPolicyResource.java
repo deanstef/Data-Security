@@ -1,6 +1,5 @@
 package eu.sunfishproject.icsp.pap.net.api.v1;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import eu.sunfishproject.icsp.pap.config.PAPConfig;
 import eu.sunfishproject.icsp.pap.exceptions.PAPException;
 import io.swagger.annotations.ApiOperation;
@@ -14,7 +13,6 @@ import org.apache.logging.log4j.Logger;
 import org.sunfish.icsp.common.exceptions.ICSPException;
 import org.sunfish.icsp.common.rest.ExtendedMediaType;
 import org.sunfish.icsp.common.rest.SunfishServices;
-import org.sunfish.icsp.common.rest.mappers.XACMLPolicyTypeReader;
 import org.sunfish.icsp.common.rest.model.ri.ServiceResponse;
 import org.sunfish.icsp.common.rest.model.ri.ServiceresponseList;
 import org.sunfish.icsp.common.rest.ri.RIAdapter;
@@ -25,7 +23,6 @@ import org.sunfish.icsp.common.xacml.generated.PolicyListType;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -39,7 +36,7 @@ public class PAPPolicyResource {
 
     String issuer = null;
 
-    public PAPPolicyResource(String issuer) {
+    public PAPPolicyResource(final String issuer) {
         this.issuer = issuer;
     }
 
@@ -61,8 +58,8 @@ public class PAPPolicyResource {
                                       @QueryParam("policyType")
                                       final String policyType) throws PAPException {
 
-        String requestorID = PAPConfig.getInstance().getRIRequestorID();
-        String token = PAPConfig.getInstance().getRIToken();
+        final String requestorID = PAPConfig.getInstance().getRIRequestorID();
+        final String token = PAPConfig.getInstance().getRIToken();
 
 
         if(serviceID == null || serviceID.isEmpty() || policyType == null || policyType.isEmpty()) {
@@ -70,16 +67,16 @@ public class PAPPolicyResource {
         }
 
 
-        RIAdapter riAdapter = new RestRI(PAPConfig.getInstance().getRIUrl());
+        final RIAdapter riAdapter = new RestRI(PAPConfig.getInstance().getRIUrl());
 
 
         try {
-            ServiceResponse serviceResponse = riAdapter.service(requestorID, token, serviceID, policyType);
+            final ServiceResponse serviceResponse = riAdapter.service(requestorID, token, serviceID, policyType);
             return generatePolicyListType(serviceResponse);
 
-        } catch(ICSPException e) {
+        } catch(final ICSPException e) {
             throw new PAPException("Could not process request: " + e.getStatus(), e.getStatus());
-        } catch (Exception e) {
+        } catch (final Exception e) {
             log.error("Erroro retrieving policies", e);
             throw new PAPException("Internal Error", Response.Status.INTERNAL_SERVER_ERROR);
         }
@@ -105,14 +102,14 @@ public class PAPPolicyResource {
                             @ApiParam(value=Documentation.PAP_ADD_POLICIES_EXPIRATION_TIME, required = true)
                             @QueryParam("expirationTime")
                             final String expirationTime,
-                            @ApiParam(value = Documentation.PAP_ADD_POLICIES_BODY, required = true)
+                            @ApiParam(value = Documentation.PAP_ADD_POLICIES_BODY, required = true) final
                             PolicyType policy) throws PAPException {
 
 
-        String policyString = CommonUtil.policyTypeToString(policy);
-        String requestorID = PAPConfig.getInstance().getRIRequestorID();
-        String token = PAPConfig.getInstance().getRIToken();
-        String id = policy.getPolicyId();
+        final String policyString = CommonUtil.policyTypeToString(policy);
+        final String requestorID = PAPConfig.getInstance().getRIRequestorID();
+        final String token = PAPConfig.getInstance().getRIToken();
+        final String id = policy.getPolicyId();
 
 
         if(serviceID == null || serviceID.isEmpty() || policyType == null || policyType.isEmpty() || expirationTime == null || expirationTime.isEmpty()) {
@@ -120,14 +117,14 @@ public class PAPPolicyResource {
         }
 
 
-        RIAdapter riAdapter = new RestRI(PAPConfig.getInstance().getRIUrl());
+        final RIAdapter riAdapter = new RestRI(PAPConfig.getInstance().getRIUrl());
 
 
         try {
             riAdapter.store(policyString, requestorID, token, expirationTime, id, serviceID, policyType);
-        } catch(ICSPException e) {
+        } catch(final ICSPException e) {
             throw new PAPException("Could not process request: " + e.getStatus(), e.getStatus());
-        } catch (Exception e) {
+        } catch (final Exception e) {
             throw new PAPException("Internal Error", Response.Status.INTERNAL_SERVER_ERROR);
         }
 
@@ -135,34 +132,34 @@ public class PAPPolicyResource {
 
     }
 
-    @PUT
-    @ApiOperation(value = Documentation.PAP_UPDATE_POLICIES, nickname = "update-policies")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = Documentation.PAP_UPDATE_POLICIES_200, response = String.class),
-            @ApiResponse(code = 400, message = Documentation.PAP_UPDATE_POLICIES_400),
-            @ApiResponse(code = 403, message = Documentation.PAP_UPDATE_POLICIES_403),
-            @ApiResponse(code = 404, message = Documentation.PAP_UPDATE_POLICIES_404)
-
-    })
-    public String updatePolicy(@ApiParam(value = Documentation.PAP_ADD_POLICIES_BODY, required = true)
-                               PolicyType policy) throws PAPException {
-
-
-        String policyString = CommonUtil.policyTypeToString(policy);
-        String requestorID = PAPConfig.getInstance().getRIRequestorID();
-        String token = PAPConfig.getInstance().getRIToken();
-        String id = policy.getPolicyId();
-
-        RIAdapter riAdapter = new RestRI(PAPConfig.getInstance().getRIUrl());
-
-        try {
-            riAdapter.update(policyString, requestorID, token, id);
-        } catch(ICSPException e) {
-            throw new PAPException("Could not process request: " + e.getStatus(), e.getStatus());
-        }
-
-        return "Success";
-    }
+//    @PUT
+//    @ApiOperation(value = Documentation.PAP_UPDATE_POLICIES, nickname = "update-policies")
+//    @ApiResponses(value = {
+//            @ApiResponse(code = 200, message = Documentation.PAP_UPDATE_POLICIES_200, response = String.class),
+//            @ApiResponse(code = 400, message = Documentation.PAP_UPDATE_POLICIES_400),
+//            @ApiResponse(code = 403, message = Documentation.PAP_UPDATE_POLICIES_403),
+//            @ApiResponse(code = 404, message = Documentation.PAP_UPDATE_POLICIES_404)
+//
+//    })
+//    public String updatePolicy(@ApiParam(value = Documentation.PAP_ADD_POLICIES_BODY, required = true)
+//                               PolicyType policy) throws PAPException {
+//
+//
+//        String policyString = CommonUtil.policyTypeToString(policy);
+//        String requestorID = PAPConfig.getInstance().getRIRequestorID();
+//        String token = PAPConfig.getInstance().getRIToken();
+//        String id = policy.getPolicyId();
+//
+//        RIAdapter riAdapter = new RestRI(PAPConfig.getInstance().getRIUrl());
+//
+//        try {
+//            riAdapter.update(policyString, requestorID, token, id);
+//        } catch(ICSPException e) {
+//            throw new PAPException("Could not process request: " + e.getStatus(), e.getStatus());
+//        }
+//
+//        return "Success";
+//    }
 
 
     @DELETE
@@ -180,16 +177,16 @@ public class PAPPolicyResource {
                                final String id) throws PAPException {
 
 
-        String requestorID = PAPConfig.getInstance().getRIRequestorID();
-        String token = PAPConfig.getInstance().getRIToken();
+        final String requestorID = PAPConfig.getInstance().getRIRequestorID();
+        final String token = PAPConfig.getInstance().getRIToken();
 
-        RIAdapter riAdapter = new RestRI(PAPConfig.getInstance().getRIUrl());
+        final RIAdapter riAdapter = new RestRI(PAPConfig.getInstance().getRIUrl());
 
         try {
             riAdapter.delete(requestorID, token, id);
-        } catch(ICSPException e) {
+        } catch(final ICSPException e) {
             throw new PAPException("Could not process request: " + e.getStatus(), e.getStatus());
-        }  catch (Exception e) {
+        }  catch (final Exception e) {
             throw new PAPException("Internal Error", Response.Status.INTERNAL_SERVER_ERROR);
         }
 
@@ -199,19 +196,19 @@ public class PAPPolicyResource {
 
 
 
-    private PolicyListType generatePolicyListType(ServiceResponse serviceResponse) throws PAPException {
+    private PolicyListType generatePolicyListType(final ServiceResponse serviceResponse) throws PAPException {
 
 
-        PolicyListType policyListType = new PolicyListType();
+        final PolicyListType policyListType = new PolicyListType();
 
-        List<ServiceresponseList> list = serviceResponse.getList();
+        final List<ServiceresponseList> list = serviceResponse.getList();
 
-        for(ServiceresponseList serviceResponseList : list) {
+        for(final ServiceresponseList serviceResponseList : list) {
 
-            String policyString = new String(Base64.decodeBase64(serviceResponseList.getPolicy()));
+            final String policyString = new String(Base64.decodeBase64(serviceResponseList.getPolicy()));
 
 
-            PolicyType policyType = CommonUtil.stringToPolicyType(policyString);
+            final PolicyType policyType = CommonUtil.stringToPolicyType(policyString);
 
             if(policyType != null) {
                 policyListType.getPolicy().add(policyType);

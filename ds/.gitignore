@@ -14,9 +14,3 @@ buildNumber.properties
 
 # Exclude maven wrapper
 !/.mvn/wrapper/maven-wrapper.jar
-
-# Exclude deployment .war files
-!doc/install/infrastructure/tomcat/webapps/*.war
-!doc/install/service/tomcat/webapps/*.war
-!doc/install/manual/infrastructure/tomcat/webapps/*.war
-!doc/install/manual/service/tomcat/webapps/*.war

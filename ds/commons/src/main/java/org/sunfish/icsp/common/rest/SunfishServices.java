@@ -80,9 +80,9 @@ public interface SunfishServices {
 
   // RI
   public static final String RI_PATH_STORE                      = "store";
-  public static final String RI_PATH_UPDATE                     = "update";
+//  public static final String RI_PATH_UPDATE                     = "update";
   public static final String RI_PATH_DELETE                     = "delete";
-  public static final String RI_PATH_SERVICE                    = "service";
+  public static final String RI_PATH_SERVICE                    = "polService";
   public static final String RI_PATH_READ                       = "read";
 
 
