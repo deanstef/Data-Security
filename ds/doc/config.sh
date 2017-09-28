@@ -12,6 +12,8 @@ PEP_URL_PDP="http://localhost:8080/pdp/"
 # All possible PIPs (seperated by comma)
 PEP_URLS_PIPS="http://localhost:8080/pip/"
 PEP_ZONE="demozone"
+PEP_URL_DM="http://195.110.40.69:50002/DM/v1/"
+PEP_URL_ANON="http://195.110.40.69:50001/api/v1/"
 
 
 # PAP Config

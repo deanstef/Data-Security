@@ -35,6 +35,8 @@ function createPEPConf {
     echo "pdp = $PEP_URL_PDP" > $pepConfig
     echo "pips = $PEP_URLS_PIPS" >> $pepConfig
     echo "zone = $PEP_ZONE" >> $pepConfig
+    echo "dm.service.url = $PEP_URL_DM" >> $pepConfig
+    echo "anon.service.url = $PEP_URL_ANON" >> $pepConfig
 
     echo "PEP Config: $pepConfig"
 }
