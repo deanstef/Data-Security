@@ -14,6 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.openaz.xacml.pdp.util.OpenAZPDPProperties;
 import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.sunfish.icsp.common.factories.ThreadSafeCombiningAlgorithmFactory;
 import org.sunfish.icsp.common.factories.ThreadSafeDataTypeFactory;
@@ -76,6 +77,8 @@ public class CommonSetup extends ResourceConfig {
     doRegister(c, StatusFilter.class, "Status Code Filter");
     doRegister(c, HeaderFilter.class, "Header Filter");
     doRegister(c, DebuggingFilter.class, "Transparent Filter");
+    doRegister(c, MultiPartFeature.class, "Multipart/Formdata Support");
+
 
     DATE_FORMAT.setTimeZone(TIME_ZONE);
   }

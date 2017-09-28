@@ -7,18 +7,18 @@ public class XACMLConstants {
 
 
     // Categories
-    public static final String CATEGORY_ISSUER                        = "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject";
-    public static final String CATEGORY_ENDPOINT                      = "urn:oasis:names:tc:xacml:3.0:attribute-category:resource";
-    public static final String CATEGORY_AUDIENCE                      = "urn:oasis:names:tc:xacml:1.0:subject-category:recipient-subject";
-    public static final String CATEGORY_REQUEST_PARAMETERS            = "urn:sunfish:attribute-category:data";
-    public static final String CATEGORY_REQUEST_DATA                  = "urn:sunfish:attribute-category:request-data";
-    public static final String CATEGORY_REQUEST                       = "urn:sunfish:attribute-category:request";
-    public static final String CATEGORY_RESPONSE                      = "urn:sunfish:attribute-category:response";
-    public static final String CATEGORY_SERVICE                       = "urn:sunfish:attribute-category:service";
-    public static final String CATEGORY_APPLICATION                   = "urn:sunfish:attribute-category:application";
-    public static final String CATEGORY_TARGET                        = "urn:sunfish:attribute-category:target";
-    public static final String CATEGORY_PEP                           = "urn:sunfish:attribute-category:pep";
-    public static final String CATEGORY_IDENTITY                      = "urn:sunfish:attribute-category:identity";
+    public static final String CATEGORY_ISSUER             = "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject";
+    public static final String CATEGORY_ENDPOINT           = "urn:oasis:names:tc:xacml:3.0:attribute-category:resource";
+    public static final String CATEGORY_AUDIENCE           = "urn:oasis:names:tc:xacml:1.0:subject-category:recipient-subject";
+    public static final String CATEGORY_REQUEST_PARAMETERS = "urn:sunfish:attribute-category:data";
+    public static final String CATEGORY_REQUEST_DATA       = "urn:sunfish:attribute-category:request-data";
+    public static final String CATEGORY_REQUEST            = "urn:sunfish:attribute-category:request";
+    public static final String CATEGORY_RESPONSE           = "urn:sunfish:attribute-category:response";
+    public static final String CATEGORY_SERVICE            = "urn:sunfish:attribute-category:service";
+    public static final String CATEGORY_APPLICATION        = "urn:sunfish:attribute-category:application";
+    public static final String CATEGORY_TARGET             = "urn:sunfish:attribute-category:target";
+    public static final String CATEGORY_PEP                = "urn:sunfish:attribute-category:pep";
+    public static final String CATEGORY_IDENTITY           = "urn:sunfish:attribute-category:identity";
 
 
     // Attributes
@@ -47,8 +47,8 @@ public class XACMLConstants {
     public static final String ATTRIBUTE_RESPONSE_HEADER_PARAMETER    = "urn:sunfish:attribute:response:header-parameter";
     public static final String ATTRIBUTE_RESPONSE_ENFORCED_ACTION     = "urn:sunfish:attribute:response:enforced-action";
     public static final String ATTRIBUTE_RESPONSE_BODY_DATA           = "urn:sunfish:attribute:response:body-data";
-    public static final String ATTRIBUTE_RESPONSE_NOT_VALID_BEFORE     = "urn:sunfish:attribute:response:not-valid-before";
-    public static final String ATTRIBUTE_RESPONSE_NOT_VALID_AFTER      = "urn:sunfish:attribute:response:not-valid-after";
+    public static final String ATTRIBUTE_RESPONSE_NOT_VALID_BEFORE    = "urn:sunfish:attribute:response:not-valid-before";
+    public static final String ATTRIBUTE_RESPONSE_NOT_VALID_AFTER     = "urn:sunfish:attribute:response:not-valid-after";
 
     public static final String ATTRIBUTE_SERVICE_HOST                 = "urn:sunfish:attribute:service:host";
     public static final String ATTRIBUTE_SERVICE_ZONE                 = "urn:sunfish:attribute:service:zone";
@@ -73,17 +73,18 @@ public class XACMLConstants {
     public static final String ATTRIBUTE_REQUEST_PARAMETERS_DATA_TAGS = "urn:sunfish:attribute:data:tag";
     public static final String ATTRIBUTE_REQUEST_DATA_HEADER          = "urn:sunfish:attribute:request-data";
 
+    public static final String OBLIGATION_ID_ANON                     = "urn:sunfish:obligation:id:anon";
     public static final String OBLIGATION_ID_MASK                     = "urn:sunfish:obligation:id:mask";
-    public static final String OBLIGATION_MASKING_POLICY_ID           = "urn:sunfish:obligation:masking-policy-id";
-    public static final String OBLIGATION_MASKING_CONTEXT_USER        = "urn:sunfish:obligation:masking-context:user";
 
-    public static final String OBLIGATION_ID_MASK_JSON                = "urn:sunfish:obligation:id:MASK-JSON";
-    public static final String OBLIGATION_ID_MASK_CSV                 = "urn:sunfish:obligation:id:MASK-CSV";
-    public static final String OBLIGATION_ID_MASK_XML                 = "urn:sunfish:obligation:id:MASK-XML";
-    public static final String OBLIGATION_ID_MASK_TEXT                = "urn:sunfish:obligation:id:MASK-TEXT";
+    public static final String OBLIGATION_MASKING_POLICY_ID    = "urn:sunfish:obligation:masking-policy-id";
+    public static final String OBLIGATION_MASKING_CONTEXT_USER = "urn:sunfish:obligation:masking-context:user";
 
-    public static final String OBLIGATION_ID_AUTHENTICATE             = "urn:sunfish:attribute:obligation:authenticate";
+    public static final String OBLIGATION_ID_MASK_JSON         = "urn:sunfish:obligation:id:MASK-JSON";
+    public static final String OBLIGATION_ID_MASK_CSV          = "urn:sunfish:obligation:id:MASK-CSV";
+    public static final String OBLIGATION_ID_MASK_XML          = "urn:sunfish:obligation:id:MASK-XML";
+    public static final String OBLIGATION_ID_MASK_TEXT         = "urn:sunfish:obligation:id:MASK-TEXT";
 
+    public static final String OBLIGATION_ID_AUTHENTICATE      = "urn:sunfish:attribute:obligation:authenticate";
 
 
 }

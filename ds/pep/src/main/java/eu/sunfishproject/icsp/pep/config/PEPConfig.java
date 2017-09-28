@@ -20,12 +20,12 @@ import java.util.*;
 public class PEPConfig {
 
 
-    private static PEPConfig instance = null;
-    private static String configFilePathReleativeToConfigDir = "pep.config";
-    private static Config config = null;
+    private static PEPConfig instance                           = null;
+    private static String    configFilePathReleativeToConfigDir = "pep.config";
+    private static Config    config                             = null;
 
-    private final Logger log  = LogManager.getLogger(PEPConfig.class);
-    private final Map<String, PIPAdapter> pips = Collections.synchronizedMap(new HashMap<String, PIPAdapter>());
+    private final Logger                    log       = LogManager.getLogger(PEPConfig.class);
+    private final Map<String, PIPAdapter>   pips      = Collections.synchronizedMap(new HashMap<String, PIPAdapter>());
     private final Map<String, List<String>> userRoles = Collections.synchronizedMap(new HashMap<String, List<String>>());
 
 
@@ -34,19 +34,16 @@ public class PEPConfig {
     // DEBUG END
 
 
-
-    private PEPConfig()
-    {
+    private PEPConfig() {
         try {
             config = Config.getInstance(configFilePathReleativeToConfigDir);
-        } catch(IOException e) {
+        } catch (IOException e) {
             log.error("Could not read config: ", e);
         }
     }
 
-    public static PEPConfig getInstance()
-    {
-        if(instance == null) {
+    public static PEPConfig getInstance() {
+        if (instance == null) {
             instance = new PEPConfig();
 
             readPIPsFromConfig();
@@ -55,7 +52,6 @@ public class PEPConfig {
         }
         return instance;
     }
-
 
 
     public void addPIP(final PIPAdapter adapter) {
@@ -68,34 +64,42 @@ public class PEPConfig {
     }
 
 
-
     public PDPAdapter getPDP() {
-        String pdp = config.getProperty("pdp","http://localhost:8080/pdp/");
+        String pdp = config.getProperty("pdp", "http://localhost:8080/pdp/");
         return new RestPDPClient(pdp + SunfishServices.PDP_VERSION);
     }
 
     public String getZone() {
-        String zone = config.getProperty("zone","xxx");
+        String zone = config.getProperty("zone", "xxx");
         return zone;
     }
 
 
     public String getOAServiceUrl() {
-        String zone = config.getProperty("oa.service.url","http://localhost:8080/pep");
+        String zone = config.getProperty("oa.service.url", "http://localhost:8080/pep");
         return zone;
     }
 
     public String getDemoServiceUrl() {
-        String zone = config.getProperty("demo.service.url","http://localhost:8080/demo-app");
+        String zone = config.getProperty("demo.service.url", "http://localhost:8080/demo-app");
         return zone;
     }
 
+    public String getDatamaskingServiceUrl() {
+        String dm = config.getProperty("dm.service.url", "http://195.110.40.69:50002/DM/v1/");
+        return dm;
+    }
+
+    public String getAnonServiceUrl() {
+        String anon = config.getProperty("anon.service.url", "http://195.110.40.69:50001/api/v1/");
+        return anon;
+    }
 
 
     public List<String> getUserRoles(String bpk) {
 
         List<String> userRoles = this.userRoles.get(bpk);
-        if(userRoles != null) {
+        if (userRoles != null) {
             return userRoles;
         }
 
@@ -108,7 +112,7 @@ public class PEPConfig {
     private static void readPIPsFromConfig() {
 
         String[] pips = config.getArrayForProperty("pips", "http://localhost:8080/pip/");
-        for(String pip : pips) {
+        for (String pip : pips) {
             instance.addPIP(new RestPIP(pip + SunfishServices.PIP_VERSION));
         }
 
@@ -118,18 +122,14 @@ public class PEPConfig {
 
         String[] userRolesArray = config.getArrayForProperty("user.roles", "");
 
-        for(String userRole : userRolesArray) {
+        for (String userRole : userRolesArray) {
             String[] keyValue = userRole.split("@");
 
-            if(keyValue.length == 2) {
+            if (keyValue.length == 2) {
                 String[] userRoles = keyValue[1].split(":");
                 instance.userRoles.put(keyValue[0], Arrays.asList(userRoles));
             }
         }
 
     }
-
-
-
-
 }

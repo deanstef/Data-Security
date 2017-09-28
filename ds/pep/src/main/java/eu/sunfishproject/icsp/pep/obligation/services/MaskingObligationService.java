@@ -1,5 +1,6 @@
 package eu.sunfishproject.icsp.pep.obligation.services;
 
+import eu.sunfishproject.icsp.pep.config.PEPConfig;
 import eu.sunfishproject.icsp.pep.net.api.v1.PEPRequestResource;
 import eu.sunfishproject.icsp.pep.obligation.ObligationService;
 import eu.sunfishproject.icsp.pep.obligation.impl.MaskingObligationImpl;
@@ -54,7 +55,7 @@ public class MaskingObligationService implements ObligationService {
 
     private void handleMaskingObligation(MaskingObligationImpl maskingObligation, SunfishHttpObject sunfishHttpObject) throws ICSPException {
 
-        MaskingProvider maskingProvider = new IBMMaskingProvider("http://195.110.40.69:50002/DM/v1/");
+        MaskingProvider maskingProvider = new IBMMaskingProvider(PEPConfig.getInstance().getDatamaskingServiceUrl());
         MaskingDataType maskingDataType = MaskingDataType.TYPE_TEXT;
 
 

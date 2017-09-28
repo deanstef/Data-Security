@@ -71,8 +71,10 @@ public class V1 {
       @ApiParam(value = Documentation.HEADER_SERVICE, required = true) @HeaderParam(SunfishServices.HEADER_SERVICE) final String serviceID,
       @ApiParam(value = Documentation.PRP_COLLECT_PARM_BODY, required = true, type = "java.lang.String") final org.apache.openaz.xacml.api.Request decisionRequest)
       throws PRPException {
+    log.error("Before collect");
     final PolicySetType tmp = prpPolicyStore.getPoliciesForDecisionRequest(decisionRequest, policyType,
         serviceID);
+    log.error("after collect");
     return tmp;
   }
 

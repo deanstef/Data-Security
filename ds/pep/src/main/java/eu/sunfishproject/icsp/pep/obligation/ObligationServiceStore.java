@@ -1,5 +1,6 @@
 package eu.sunfishproject.icsp.pep.obligation;
 
+import eu.sunfishproject.icsp.pep.obligation.services.AnonObligationService;
 import eu.sunfishproject.icsp.pep.obligation.services.AuthenticationObligationService;
 import eu.sunfishproject.icsp.pep.obligation.services.MaskingObligationService;
 import org.apache.logging.log4j.LogManager;
@@ -14,8 +15,8 @@ import java.util.List;
 public class ObligationServiceStore {
 
 
-    private final List<ObligationService> obligationServices;
-    private static ObligationServiceStore instance;
+    private final  List<ObligationService> obligationServices;
+    private static ObligationServiceStore  instance;
     private Logger log = LogManager.getLogger(ObligationServiceStore.class);
 
 
@@ -24,6 +25,7 @@ public class ObligationServiceStore {
         obligationServices = new ArrayList<>();
         obligationServices.add(new MaskingObligationService());
         obligationServices.add(new AuthenticationObligationService());
+        obligationServices.add(new AnonObligationService());
 
     }
 
@@ -37,8 +39,8 @@ public class ObligationServiceStore {
 
     public ObligationService getObligationServiceForObligation(String obligationId) {
 
-        for(ObligationService obligationService : this.obligationServices) {
-            if(obligationService.canHandleObligation(obligationId)) {
+        for (ObligationService obligationService : this.obligationServices) {
+            if (obligationService.canHandleObligation(obligationId)) {
                 return obligationService;
             }
         }
@@ -46,10 +48,6 @@ public class ObligationServiceStore {
         return null;
 
     }
-
-
-
-
 
 
 }
