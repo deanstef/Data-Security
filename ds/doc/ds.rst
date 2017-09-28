@@ -59,7 +59,7 @@ The infrastructure tenant features several configuration options before installa
  * ``PEP_URLS_PIPS``: Defines the possible *PIPs* available to the *PEP*. Multiple URLs can be specified, separated by a comma
  * ``PEP_ZONE``: Defines the tenant name the *PEP* is located in
  * ``PEP_URL_DM``: Specifies the URL to the data masking service
- * ``EP_URL_ANON``: Sepcifies the URL to the anonymisation service
+ * ``PEP_URL_ANON``: Sepcifies the URL to the anonymisation service
  * ``PIP_DATABASE``: Defines possible database values for the *PIP*. Each setting consists of a key and a value. In general three entries are necessary in order to setup a new service inside the service tenant:
 
    * **Host for ID**:  Assign a hostname to a specific service. The key must be in the format ``host.<service_id>``. The value represents a single URL to the designated service.
