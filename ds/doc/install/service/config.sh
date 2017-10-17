@@ -1,4 +1,3 @@
-#!/usr/local/bin/bash
 #!/bin/bash
 
 
@@ -19,14 +18,14 @@ PEP_ZONE="tenant"
 # PIP Database
 #**********************************************
 declare -A PIP_DATABASE
-PIP_DATABASE["host.localhost.10000"]="http://localhost:8080/"
-PIP_DATABASE["zone.localhost.10000"]="tenant"
-PIP_DATABASE["pep.demozone"]="http://localhost:8080/pep/v1"
+PIP_DATABASE["host.local"]="http://localhost:8080/"
+PIP_DATABASE["zone.local"]="tenant"
+PIP_DATABASE["pep.tenant"]="http://localhost:8080/pep/v1"
 
 
 # PEP Proxy
 #**********************************************
 PROXY_IP="127.0.0.1"
 PROXY_PORT=10000
-PROXY_PEP="http://localhost:8080/pep/v1/"
-
+declare -A PROXY_PEP
+PROXY_PEP["local"]="http://localhost:8080/pep/v1/"

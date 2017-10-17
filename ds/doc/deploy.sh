@@ -1,4 +1,3 @@
-#!/usr/local/bin/bash
 #!/bin/bash
 
 source config.sh

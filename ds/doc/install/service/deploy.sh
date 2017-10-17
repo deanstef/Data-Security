@@ -1,4 +1,3 @@
-#!/usr/local/bin/bash
 #!/bin/bash
 
 source config.sh
@@ -58,8 +57,7 @@ function createProxyConf {
 
     echo "proxy.ip = $PROXY_IP" > $proxyConfig
     echo "proxy.port = $PROXY_PORT" >> $proxyConfig
-    echo "pep.url = $PROXY_PEP" >> $proxyConfig
-
+    for entry in "${!PROXY_PEP[@]}"; do echo "pep.$entry = ${PROXY_PEP[$entry]}" >> $proxyConfig; done
     echo "PROXY Config: $proxyConfig"
 }
 
