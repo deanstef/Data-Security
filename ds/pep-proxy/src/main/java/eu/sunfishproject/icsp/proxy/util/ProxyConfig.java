@@ -7,6 +7,7 @@ import org.sunfish.icsp.common.rest.pdp.PDPAdapter;
 import org.sunfish.icsp.common.rest.pdp.RestPDPClient;
 import org.sunfish.icsp.common.util.Config;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -29,7 +30,7 @@ public class ProxyConfig {
     {
         try {
 
-            log.info("Using Configuration file:"+CONFIG_FILE_NAME);
+            log.info("Using Configuration file:"+new File(CONFIG_FILE_NAME).getAbsolutePath());
             FileInputStream fis = new FileInputStream(CONFIG_FILE_NAME);
             properties.load(fis);
 
@@ -61,8 +62,8 @@ public class ProxyConfig {
         return port;
     }
 
-    public String getPEPUrl() {
-        String url = properties.getProperty("pep.url", Constants.PEP_URL);
+    public String getPEPUrl(String serviceID) {
+        String url = properties.getProperty("pep."+serviceID, Constants.PEP_URL);
         return url;
     }
 

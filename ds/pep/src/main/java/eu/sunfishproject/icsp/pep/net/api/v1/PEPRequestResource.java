@@ -185,8 +185,7 @@ public class PEPRequestResource {
         final String queryString = this.requestData.getQueryString();
         sunfishResponse.setResponseCode(responseToPrepare.getResponseCode());
 
-        final Request request = PEPUtil.buildPDPAuthorization(sunfishResponse, this.service, this.request, responseToPrepare, this.userSession);
-
+        final Request request = PEPUtil.buildPDPAuthorization(sunfishResponse, this.service, this.request, responseToPrepare, this.userSession, PEPConfig.getInstance().getZone());
 
         final AuthorizationResponse authResponse = performAuthorization(request, this.service.getId(), SunfishServices.POLICYTYPE_DS);
 

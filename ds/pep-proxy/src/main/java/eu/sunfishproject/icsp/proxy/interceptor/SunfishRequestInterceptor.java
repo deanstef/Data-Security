@@ -5,10 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import eu.sunfishproject.icsp.proxy.http.HttpClient;
 import eu.sunfishproject.icsp.proxy.http.HttpRequest;
-import javax.ws.rs.core.Response;
-
 import eu.sunfishproject.icsp.proxy.http.HttpResponse;
-import eu.sunfishproject.icsp.proxy.util.Constants;
 import eu.sunfishproject.icsp.proxy.util.ProxyConfig;
 import org.sunfish.icsp.common.exceptions.ICSPException;
 import org.sunfish.icsp.common.exceptions.InvalidRequestException;
@@ -18,21 +15,22 @@ import org.sunfish.icsp.common.util.CommonUtil;
 
 import javax.ws.rs.core.MultivaluedHashMap;
 import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * @author <a href="mailto:dominik.ziegler@a-sit.at">Dominik Ziegler</a>
  */
-public class SunfishRequestInterceptor  extends RequestInterceptor {
+public class SunfishRequestInterceptor extends RequestInterceptor {
 
-    private InputStream targetInputStream;
+    private InputStream  targetInputStream;
     private OutputStream targetOutputStream;
-
 
 
     public SunfishRequestInterceptor(InputStream clientInputStream, OutputStream clientOutputStream) {
@@ -40,7 +38,10 @@ public class SunfishRequestInterceptor  extends RequestInterceptor {
     }
 
     @Override
-    public  byte[] generateResponse(InputStream inputStream) throws IOException, InterruptedException, IllegalArgumentException {
+    public byte[] generateResponse(InputStream inputStream) throws
+                                                            IOException,
+                                                            InterruptedException,
+                                                            IllegalArgumentException {
 
 
         HttpRequest request = new HttpRequest(inputStream);
@@ -48,8 +49,17 @@ public class SunfishRequestInterceptor  extends RequestInterceptor {
 //        System.out.println("Generating response for: " + request.getRequestURI() + " (" + System.currentTimeMillis()+")");
 
 
-        HttpResponse response = null;
+        HttpResponse  response = null;
+        String[]      split    = request.getRequestURI().split(Pattern.quote("/"));
+        if(split.length<2){
+            throw new IllegalArgumentException(("path too short!"));
+        }
+        StringBuilder buf      = new StringBuilder();
+        for (int i = 2; i < split.length; ++i) {
+            buf.append(("/")).append(split[i]);
+        }
 
+        request.setRequestURI(buf.toString());
         try {
             switch (request.getHttpMethod()) {
                 case GET:
@@ -58,12 +68,12 @@ public class SunfishRequestInterceptor  extends RequestInterceptor {
                 case DELETE:
                 case HEAD:
                 case OPTIONS:
-                    response = postToPEP(request);
+                    response = postToPEP(split[1], request);
                     break;
                 default:
                     throw new IOException("Cannot handle!");
             }
-        } catch(ICSPException e){
+        } catch (ICSPException e) {
             throw new IOException("Internal Server error: " + e.getStatus());
         }
 
@@ -85,14 +95,14 @@ public class SunfishRequestInterceptor  extends RequestInterceptor {
     protected void onFinish() {
 
         try {
-            if(targetInputStream!=null) {
+            if (targetInputStream != null) {
                 targetInputStream.close();
             }
         } catch (IOException e) {
         }
 
         try {
-            if(targetOutputStream != null) {
+            if (targetOutputStream != null) {
                 targetOutputStream.close();
             }
         } catch (IOException e) {
@@ -100,16 +110,15 @@ public class SunfishRequestInterceptor  extends RequestInterceptor {
     }
 
 
+    private HttpResponse postToPEP(String serviceUrl, HttpRequest request) throws ICSPException {
 
-    private HttpResponse postToPEP(HttpRequest request) throws ICSPException {
+        MultivaluedMap<String, String> headers = createSunfishHeaders(serviceUrl, request);
 
-        MultivaluedMap<String, String> headers = createSunfishHeaders(request);
-
-        HttpClient client = new HttpClient(ProxyConfig.getInstance().getPEPUrl());
+        HttpClient client = new HttpClient(ProxyConfig.getInstance().getPEPUrl(serviceUrl));
 
 
         String contentType = null;
-        if(request.getBody() != null && request.getBody().length != 0) {
+        if (request.getBody() != null && request.getBody().length != 0) {
             contentType = request.getHeaders().get("Content-Type");
         }
 
@@ -137,30 +146,23 @@ public class SunfishRequestInterceptor  extends RequestInterceptor {
     }
 
 
-
-    private MultivaluedMap<String, String> createSunfishHeaders(HttpRequest request) throws ICSPException {
+    private MultivaluedMap<String, String> createSunfishHeaders(String serviceID, HttpRequest request) throws ICSPException {
 
 
         URI requestURI = request.requestURI();
 
-        String host = requestURI.getHost();
-        int port = requestURI.getPort();
-        String path = requestURI.getPath();
-        String query = requestURI.getQuery();
-        String scheme = requestURI.getScheme();
-        String method = request.getHttpMethod().toString();
+        int                 port    = requestURI.getPort();
+        String              path    = requestURI.getPath();
+        String              query   = requestURI.getQuery();
+        String              scheme  = requestURI.getScheme();
+        String              method  = request.getHttpMethod().toString();
         Map<String, String> headers = request.getHeaders();
 
-
-        if(host == null) {
-            host = this.targetHost == null ? request.getHeaders().get("Host") : this.targetHost;
-        }
-
-        if(port == -1) {
+        if (port == -1) {
             port = isSecure ? 443 : 80;
         }
 
-        if(scheme == null) {
+        if (scheme == null) {
             scheme = isSecure ? "https://" : "http://";
         }
 
@@ -171,20 +173,20 @@ public class SunfishRequestInterceptor  extends RequestInterceptor {
             ObjectMapper mapper = new ObjectMapper();
             mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
-            SunfishIssuer sunfishIssuer = createSunfishIssuer();
-            SunfishService sunfishService = createSunfishService(host);
-            SunfishRequest sunfishRequest = createSunfishRequest(method, port, path, scheme);
+            SunfishIssuer            sunfishIssuer            = createSunfishIssuer();
+            SunfishService           sunfishService           = createSunfishService(serviceID);
+            SunfishRequest           sunfishRequest           = createSunfishRequest(method, port, path, scheme);
             SunfishRequestParameters sunfishRequestParameters = createSunfishRequestParameters();
-            SunfishRequestData sunfishRequestData = createSunfishRequestData(headers, query);
-            SunfishSignature sunfishSignature = createSunfishSignature();
+            SunfishRequestData       sunfishRequestData       = createSunfishRequestData(headers, query);
+            SunfishSignature         sunfishSignature         = createSunfishSignature();
 
 
-            String headerSunfishIssuer = mapper.writeValueAsString(sunfishIssuer);
-            String headerSunfishService = mapper.writeValueAsString(sunfishService);
-            String headerSunfishRequest = mapper.writeValueAsString(sunfishRequest);
+            String headerSunfishIssuer            = mapper.writeValueAsString(sunfishIssuer);
+            String headerSunfishService           = mapper.writeValueAsString(sunfishService);
+            String headerSunfishRequest           = mapper.writeValueAsString(sunfishRequest);
             String headerSunfishRequestParameters = mapper.writeValueAsString(sunfishRequestParameters);
-            String headerSunfishRequestData = sunfishRequestData.toJson();
-            String headerSunfishSignature = mapper.writeValueAsString(sunfishSignature);
+            String headerSunfishRequestData       = sunfishRequestData.toJson();
+            String headerSunfishSignature         = mapper.writeValueAsString(sunfishSignature);
 
 
             sunfishHeaders.putSingle(SunfishServices.HEADER_ISSUER, headerSunfishIssuer);
@@ -210,7 +212,8 @@ public class SunfishRequestInterceptor  extends RequestInterceptor {
         SunfishIssuer sunfishIssuer = new SunfishIssuer();
 
         sunfishIssuer.setMethod("jwt");
-        sunfishIssuer.setToken("eyJpc3MiOiJzZmExNzI4MyIsInN1YiI6InNmYTE3MjgzIiwiYXVkIjoic2ZlOTgyIiwiaWF0IjoxNDY3OTg1OTY4LCJleHAiOjE0Njc5ODYwMjB9");
+        sunfishIssuer.setToken(
+                "eyJpc3MiOiJzZmExNzI4MyIsInN1YiI6InNmYTE3MjgzIiwiYXVkIjoic2ZlOTgyIiwiaWF0IjoxNDY3OTg1OTY4LCJleHAiOjE0Njc5ODYwMjB9");
 
         return sunfishIssuer;
     }
@@ -247,7 +250,6 @@ public class SunfishRequestInterceptor  extends RequestInterceptor {
     }
 
 
-
     private SunfishRequestData createSunfishRequestData(Map<String, String> headers, String query) {
 
         SunfishRequestData sunfishRequestData = new SunfishRequestData();
@@ -257,8 +259,6 @@ public class SunfishRequestInterceptor  extends RequestInterceptor {
 
         return sunfishRequestData;
     }
-
-
 
 
     private SunfishSignature createSunfishSignature() {
