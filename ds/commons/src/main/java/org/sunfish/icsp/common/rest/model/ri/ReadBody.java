@@ -27,16 +27,16 @@ public class ReadBody {
 
   private String token       = null;
 
-  private String id          = null;
+  private String dataId = null;
 
   public ReadBody() {
 
   }
 
-  public ReadBody(final String requestorID, final String token, final String id) {
+  public ReadBody(final String requestorID, final String token, final String dataId) {
     this.requestorID = requestorID;
     this.token = token;
-    this.id = id;
+    this.dataId = dataId;
   }
 
   public ReadBody requestorID(final String requestorID) {
@@ -79,22 +79,22 @@ public class ReadBody {
   }
 
   public ReadBody id(final String id) {
-    this.id = id;
+    this.dataId = id;
     return this;
   }
 
   /**
    * The identifer for the policy.
    *
-   * @return id
+   * @return dataId
    **/
   @ApiModelProperty(example = "null", required = true, value = "The identifer for the policy.")
-  public String getId() {
-    return id;
+  public String getDataId() {
+    return dataId;
   }
 
-  public void setId(final String id) {
-    this.id = id;
+  public void setDataId(final String dataId) {
+    this.dataId = dataId;
   }
 
   @Override
@@ -107,12 +107,12 @@ public class ReadBody {
     }
     final ReadBody readBody = (ReadBody) o;
     return Objects.equals(this.requestorID, readBody.requestorID)
-        && Objects.equals(this.token, readBody.token) && Objects.equals(this.id, readBody.id);
+        && Objects.equals(this.token, readBody.token) && Objects.equals(this.dataId, readBody.dataId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requestorID, token, id);
+    return Objects.hash(requestorID, token, dataId);
   }
 
   @Override
@@ -122,7 +122,7 @@ public class ReadBody {
 
     sb.append("    requestorID: ").append(toIndentedString(requestorID)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    dataId: ").append(toIndentedString(dataId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

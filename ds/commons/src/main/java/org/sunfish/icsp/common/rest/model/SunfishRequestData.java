@@ -134,7 +134,7 @@ public class SunfishRequestData {
     public Map<String, String> getCookies() {
 
 
-        String rawCookie = this.headers.get("Cookie");
+        String rawCookie = headers==null?null:this.headers.get("Cookie");
 
         if(rawCookie == null) {
             rawCookie = "";

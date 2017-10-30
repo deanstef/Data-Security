@@ -24,26 +24,26 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-02-23T08:20:44.040Z")
 public class ServiceresponseList {
-  private String id = null;
+  private String policyId = null;
 
   private String policy = null;
 
   public ServiceresponseList id(final String id) {
-    this.id = id;
+    this.policyId = id;
     return this;
   }
 
    /**
-   * Specifies the id of the policy.
-   * @return id
+   * Specifies the policyId of the policy.
+   * @return policyId
   **/
-  @ApiModelProperty(example = "null", required = true, value = "Specifies the id of the policy.")
-  public String getId() {
-    return id;
+  @ApiModelProperty(example = "null", required = true, value = "Specifies the policyId of the policy.")
+  public String getPolicyId() {
+    return policyId;
   }
 
-  public void setId(final String id) {
-    this.id = id;
+  public void setPolicyId(final String id) {
+    this.policyId = id;
   }
 
   public ServiceresponseList policy(final String policy) {
@@ -74,13 +74,13 @@ public class ServiceresponseList {
       return false;
     }
     final ServiceresponseList serviceresponseList = (ServiceresponseList) o;
-    return Objects.equals(this.id, serviceresponseList.id) &&
-        Objects.equals(this.policy, serviceresponseList.policy);
+    return Objects.equals(this.policyId, serviceresponseList.policyId) &&
+           Objects.equals(this.policy, serviceresponseList.policy);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, policy);
+    return Objects.hash(policyId, policy);
   }
 
 
@@ -89,7 +89,7 @@ public class ServiceresponseList {
     final StringBuilder sb = new StringBuilder();
     sb.append("class ServiceresponseList {\n");
 
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    policyId: ").append(toIndentedString(policyId)).append("\n");
     sb.append("    policy: ").append(toIndentedString(policy)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -27,15 +27,15 @@ public class DeleteBody {
 
   private String token       = null;
 
-  private String id          = null;
+  private String dataId = null;
 
   public DeleteBody() {
   }
 
-  public DeleteBody(final String requestorID, final String token, final String id) {
+  public DeleteBody(final String requestorID, final String token, final String dataId) {
     this.requestorID = requestorID;
     this.token = token;
-    this.id = id;
+    this.dataId = dataId;
   }
 
   public DeleteBody requestorID(final String requestorID) {
@@ -78,22 +78,22 @@ public class DeleteBody {
   }
 
   public DeleteBody id(final String id) {
-    this.id = id;
+    this.dataId = id;
     return this;
   }
 
   /**
-   * Specifies the id of the policy to be updated in the response.
+   * Specifies the dataId of the policy to be updated in the response.
    *
-   * @return id
+   * @return dataId
    **/
-  @ApiModelProperty(example = "null", required = true, value = "Specifies the id of the policy to be updated in the response.")
-  public String getId() {
-    return id;
+  @ApiModelProperty(example = "null", required = true, value = "Specifies the dataId of the policy to be updated in the response.")
+  public String getDataId() {
+    return dataId;
   }
 
-  public void setId(final String id) {
-    this.id = id;
+  public void setDataId(final String dataId) {
+    this.dataId = dataId;
   }
 
   @Override
@@ -106,12 +106,12 @@ public class DeleteBody {
     }
     final DeleteBody deleteBody = (DeleteBody) o;
     return Objects.equals(this.requestorID, deleteBody.requestorID)
-        && Objects.equals(this.token, deleteBody.token) && Objects.equals(this.id, deleteBody.id);
+        && Objects.equals(this.token, deleteBody.token) && Objects.equals(this.dataId, deleteBody.dataId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requestorID, token, id);
+    return Objects.hash(requestorID, token, dataId);
   }
 
   @Override
@@ -121,7 +121,7 @@ public class DeleteBody {
 
     sb.append("    requestorID: ").append(toIndentedString(requestorID)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    dataId: ").append(toIndentedString(dataId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

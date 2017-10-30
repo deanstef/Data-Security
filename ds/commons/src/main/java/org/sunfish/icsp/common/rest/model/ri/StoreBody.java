@@ -31,7 +31,7 @@ public class StoreBody {
 
   private String expirationTime = null;
 
-  private String id             = null;
+  private String policyId = null;
 
   private String serviceID      = null;
 
@@ -41,13 +41,13 @@ public class StoreBody {
 
   }
 
-  public StoreBody(final String requestorID, final String token, final String policy, final String expirationTime, final String id,
+  public StoreBody(final String requestorID, final String token, final String policy, final String expirationTime, final String policyId,
       final String serviceID, final String policyType) {
     this.requestorID = requestorID;
     this.token = token;
     this.policy = policy;
     this.expirationTime = expirationTime;
-    this.id = id;
+    this.policyId = policyId;
     this.serviceID = serviceID;
     this.policyType = policyType;
   }
@@ -132,22 +132,22 @@ public class StoreBody {
   }
 
   public StoreBody id(final String id) {
-    this.id = id;
+    this.policyId = id;
     return this;
   }
 
   /**
    * The identifer for the policy.
    *
-   * @return id
+   * @return policyId
    **/
   @ApiModelProperty(example = "null", required = true, value = "The identifer for the policy.")
-  public String getId() {
-    return id;
+  public String getPolicyId() {
+    return policyId;
   }
 
-  public void setId(final String id) {
-    this.id = id;
+  public void setPolicyId(final String policyId) {
+    this.policyId = policyId;
   }
 
   public StoreBody serviceID(final String serviceID) {
@@ -198,15 +198,15 @@ public class StoreBody {
     }
     final StoreBody storeBody = (StoreBody) o;
     return Objects.equals(this.requestorID, storeBody.requestorID)
-        && Objects.equals(this.token, storeBody.token) && Objects.equals(this.policy, storeBody.policy)
-        && Objects.equals(this.expirationTime, storeBody.expirationTime)
-        && Objects.equals(this.id, storeBody.id) && Objects.equals(this.serviceID, storeBody.serviceID)
-        && Objects.equals(this.policyType, storeBody.policyType);
+           && Objects.equals(this.token, storeBody.token) && Objects.equals(this.policy, storeBody.policy)
+           && Objects.equals(this.expirationTime, storeBody.expirationTime)
+           && Objects.equals(this.policyId, storeBody.policyId) && Objects.equals(this.serviceID, storeBody.serviceID)
+           && Objects.equals(this.policyType, storeBody.policyType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requestorID, token, policy, expirationTime, id, serviceID, policyType);
+    return Objects.hash(requestorID, token, policy, expirationTime, policyId, serviceID, policyType);
   }
 
   @Override
@@ -218,7 +218,7 @@ public class StoreBody {
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("    policy: ").append(toIndentedString(policy)).append("\n");
     sb.append("    expirationTime: ").append(toIndentedString(expirationTime)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    policyId: ").append(toIndentedString(policyId)).append("\n");
     sb.append("    serviceID: ").append(toIndentedString(serviceID)).append("\n");
     sb.append("    policyType: ").append(toIndentedString(policyType)).append("\n");
     sb.append("}");
